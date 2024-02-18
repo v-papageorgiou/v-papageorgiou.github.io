@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: #PhD student at <a href='[#](https://www.wisc.edu/)'>UW-Madison</a>.
+subtitle: #PhD student at <a href='https://www.wisc.edu/'>UW-Madison</a>.
 
 profile:
   align: right
