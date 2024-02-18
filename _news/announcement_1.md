@@ -1,8 +1,8 @@
 ---
 layout: post
-date: 2015-10-22 15:59:00-0400
+date: 2023-07-23
 inline: true
 related_posts: false
 ---
 
-A simple inline announcement.
+Gave a talk (in Greek) at the [2023 ECE TUC Summer School on Data Analysis](https://www.ece.tuc.gr/en/news/events/ece-tuc-summer-school-on-data-analysis-2023/home), hosted by my alma mater, on **Large Language Models and the New Era of Machine Learning**. ([youtube link](https://www.youtube.com/watch?v=jI5h_C9fMFU))
