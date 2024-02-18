@@ -5,7 +5,7 @@ title: cv
 nav: true
 nav_order: 1
 cv_pdf: vasilis_cv.pdf
-description: Here you can find my CV.
+description: Feel free to take a look at my CV.
 # toc:
 #   sidebar: left
 ---
