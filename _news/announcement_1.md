@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Gave a talk (in Greek) at the [2023 ECE TUC Summer School on Data Analysis](https://www.ece.tuc.gr/en/news/events/ece-tuc-summer-school-on-data-analysis-2023/home), hosted by my alma mater, on **Large Language Models and the New Era of Machine Learning**. ([youtube link](https://www.youtube.com/watch?v=jI5h_C9fMFU))
+Gave a talk on LLMs at the [2023 ECE TUC Summer School on Data Analysis](https://www.ece.tuc.gr/en/news/events/ece-tuc-summer-school-on-data-analysis-2023/home), hosted by my alma mater. ([youtube link](https://www.youtube.com/watch?v=jI5h_C9fMFU))
