@@ -1,20 +1,20 @@
 
 "bletsas":
   - firstname: ["Aggelos", "A."]
-    url: https://www.telecom.tuc.gr/~aggelos/
+    url: "https://www.telecom.tuc.gr/~aggelos/"
 
 "vougioukas":
   - firstname: ["Georgios", "G."]
-    url: https://users.isc.tuc.gr/~gevougioukas/
+    url: "https://users.isc.tuc.gr/~gevougioukas/"
 
 "papailiopoulos":
   - firstname: ["Dimitris", "D."]
-    url: https://papail.io/
+    url: "https://papail.io/"
 
 "lee":
   - firstname: ["Kangwook", "K."]
-    url: https://kangwooklee.com/
+    url: "https://kangwooklee.com/"
 
 "xiong":
   - firstname: ["Zheyang", "Z."]
-    url: https://scholar.google.com/citations?user=eFY3cj4AAAAJ&hl=en
+    url: "https://scholar.google.com/citations?user=eFY3cj4AAAAJ&hl=en"
