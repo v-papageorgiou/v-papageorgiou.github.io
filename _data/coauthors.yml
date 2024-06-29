@@ -7,13 +7,13 @@
   - firstname: ["Georgios", "G."]
     url: "https://users.isc.tuc.gr/~gevougioukas/"
 
-"papailiopoulos":
-  - firstname: ["Dimitris", "D."]
-    url: "https://papail.io/"
-
 "lee":
   - firstname: ["Kangwook", "K."]
     url: "https://kangwooklee.com/"
+  
+"papailiopoulos":
+  - firstname: ["Dimitris", "D."]
+    url: "https://papail.io/"
 
 "xiong":
   - firstname: ["Zheyang", "Z."]
