@@ -19,5 +19,3 @@ social: true # includes social icons at the bottom of the page
 Welcome! I am currently a second year PhD student at the [Computer Sciences Department](https://www.cs.wisc.edu/) of [UW-Madison](https://www.wisc.edu/), where I am fortunate enough to be working with [Prof. Dimitris Papailiopoulos](https://papail.io/). My current research interests revolve around Large Language Models, and both theoretical and practical aspects of Machine Learning and Deep Learning.
 
 Before coming to Madison, I earned my BSc and integrated MEng from the [ECE](https://www.ece.tuc.gr/index.php?id=4481) department of the [Technical University of Crete](https://www.tuc.gr/index.php?id=5397). During this time, I had the opportunity to work with [Prof. Aggelos Bletsas](https://www.telecom.tuc.gr/~aggelos/), focusing on asynchronous inference algorithms for ambiently powered wireless sensor networks [[Diploma Thesis](https://v-papageorgiou.github.io/assets/pdf/thesis.pdf)].
-
-*Currently looking for an internship for the summer of 2024.*
