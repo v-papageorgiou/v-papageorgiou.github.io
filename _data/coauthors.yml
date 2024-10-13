@@ -18,3 +18,31 @@
 "xiong":
   - firstname: ["Zheyang"]
     url: "https://scholar.google.com/citations?user=eFY3cj4AAAAJ&hl=en"
+  
+"ge":
+  - firstname: ["Albert"]
+    url: "https://www.albertge.com/"
+  
+"giannou":
+  - firstname: ["Angeliki"]
+    url: "https://sites.google.com/view/angeliki-giannou/home"
+
+"lin":
+  - firstname: ["Ziqian"]
+    url: "https://myhakureimu.github.io/"
+
+"yang":
+  - firstname: ["Liu"]
+    url: "https://leiay.github.io/"
+
+"agarwal":
+  - firstname: ["Saurabh"]
+    url: "https://saurabh.dev/"
+  
+"chrysos":
+  - firstname: ["Grigorios G."]
+    url: "https://grigorisg9gr.github.io/"
+
+"oymak":
+  - firstname: ["Samet"]
+    url: "https://sota.engin.umich.edu/"
