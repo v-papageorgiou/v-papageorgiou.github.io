@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vasilis Papageorgiou - Academic Website
+
+A modern, responsive academic personal website built with Next.js, TypeScript, and Tailwind CSS.
+
+## Features
+
+- 🎨 **Modern Design**: Clean, professional layout optimized for academic presentation
+- 📱 **Fully Responsive**: Works perfectly on all devices and screen sizes
+- 🚀 **SEO Optimized**: Structured data, meta tags, and sitemap for better search visibility
+- ⚡ **Fast Performance**: Built with Next.js 15 and optimized for speed
+- 🎯 **Academic Focus**: Designed specifically for PhD students and researchers
+- 📝 **Easy to Customize**: Simple to update with your own content
+
+## Sections
+
+- **About**: Personal bio and current position
+- **Publications**: List of research papers with abstracts and links
+- **News**: Recent updates and achievements
+- **Contact**: Social media and academic profile links
+- **CV**: Downloadable curriculum vitae
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 18.0 or later
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <your-repo-url>
+cd vibe-website
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Run the development server:
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-## Learn More
+## Customization
 
-To learn more about Next.js, take a look at the following resources:
+### Update Personal Information
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Profile Information**: Edit the personal details in `src/app/page.tsx`
+2. **Publications**: Update the `publications` array with your research papers
+3. **News**: Modify the `news` array with your recent updates
+4. **Social Links**: Update the `socialLinks` array with your profiles
+5. **CV**: Replace `public/cv.txt` with your actual CV file (PDF recommended)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Add Your Photo
 
-## Deploy on Vercel
+Replace the placeholder in the profile section with your actual photo:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Add your photo to the `public/` directory
+2. Update the image section in `src/app/page.tsx`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### SEO Optimization
+
+Update the following files with your information:
+- `src/app/layout.tsx` - Meta tags and site metadata
+- `src/lib/schema.ts` - Structured data for search engines
+- `src/app/sitemap.ts` - Site URL for sitemap
+
+## Deployment
+
+### Deploy to Vercel (Recommended)
+
+1. Push your code to GitHub
+2. Connect your repository to [Vercel](https://vercel.com)
+3. Deploy with one click
+
+### Deploy to Netlify
+
+1. Build the project:
+```bash
+npm run build
+```
+
+2. Deploy the `out` folder to Netlify
+
+### Other Platforms
+
+This is a standard Next.js application and can be deployed to any platform that supports Node.js.
+
+## Built With
+
+- [Next.js 15](https://nextjs.org/) - React framework
+- [TypeScript](https://www.typescriptlang.org/) - Type safety
+- [Tailwind CSS](https://tailwindcss.com/) - Styling
+- [Lucide React](https://lucide.dev/) - Icons
+- [Schema.org](https://schema.org/) - Structured data
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## Contact
+
+Vasilis Papageorgiou - [vpapageorgiou@wisc.edu](mailto:vpapageorgiou@wisc.edu)
+
+Project Link: [https://github.com/yourusername/academic-website](https://github.com/yourusername/academic-website)
