@@ -32,22 +32,22 @@ export const socialLinks = [
   },
   {
     name: "Google Scholar",
-    href: "https://scholar.google.com/citations?user=YOUR_ID",
-    username: "YOUR_ID"
+    href: "https://scholar.google.com/citations?user=dUQ-VYsAAAAJ",
+    username: "dUQ-VYsAAAAJ"
   },
   {
     name: "GitHub", 
-    href: "https://github.com/yourusername",
-    username: "yourusername"
+    href: "https://github.com/v-papageorgiou",
+    username: "v-papageorgiou"
   },
   {
     name: "X",
-    href: "https://x.com/yourusername", 
-    username: "@yourusername"
+    href: "https://x.com/vpapageorgiou_", 
+    username: "@vpapageorgiou_"
   },
   {
     name: "LinkedIn",
-    href: "https://linkedin.com/in/yourusername",
-    username: "yourusername"
+    href: "https://linkedin.com/in/v-papageorgiou",
+    username: "v-papageorgiou"
   }
 ];

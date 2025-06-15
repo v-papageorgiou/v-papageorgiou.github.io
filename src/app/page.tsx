@@ -174,7 +174,7 @@ export default function Home() {
                   <p className="text-gray-600 mb-3 text-sm">
                     {formattedAuthors.map((author, i) => (
                       <span key={i} className={author.name === "Vasilis Papageorgiou" ? "font-bold underline" : ""}>
-                        {author.link ? (
+                        {author.link && author.link !== "#" ? (
                           <a 
                             href={author.link} 
                             className="text-blue-600 hover:text-blue-800 hover:underline"
