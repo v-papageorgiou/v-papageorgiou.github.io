@@ -8,15 +8,15 @@ export default function Navigation() {
 
   const navLinks = [
     { href: '#about', label: 'About' },
-    { href: '#news', label: 'News' },
     { href: '#publications', label: 'Publications' },
+    { href: '#news', label: 'News' },
   ];
 
   return (
     <header className="bg-black/80 backdrop-blur-sm border-b border-cyan-400/30 sticky top-0 z-50">
       <div className="max-w-4xl mx-auto px-6 py-4">
         <nav className="flex justify-between items-center">
-          <h1 className="text-xl font-bold text-transparent bg-gradient-to-r from-cyan-400 to-pink-400 bg-clip-text drop-shadow-lg">Vasilis Papageorgiou</h1>
+          <h1 className="text-xl font-bold text-orange-300 drop-shadow-lg">Vasilis Papageorgiou</h1>
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-6">
