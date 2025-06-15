@@ -1,30 +1,75 @@
-export const publications = [
+import { colleagues } from './colleagues';
+
+export interface Publication {
+  title: string;
+  authors: string[];
+  venue: string;
+  year: string;
+  abstract: string;
+  links: {
+    paper: string;
+    code?: string;
+    website?: string;
+  };
+  tags: string[];
+}
+
+// Helper function to format authors with links
+export const formatAuthors = (authors: string[]) => {
+  return authors.map(author => {
+    const colleague = colleagues[author];
+    return {
+      name: author,
+      link: colleague?.website
+    };
+  });
+};
+
+export const publications: Publication[] = [
   {
-    title: "Reasoning with Large Language Models: A Theoretical and Empirical Analysis",
-    authors: ["Vasilis Papageorgiou", "Dimitris Papailiopoulos"],
-    venue: "Under Review",
+    title: "From Artificial Needles to Real Haystacks: Improving Retrieval Capabilities in LLMs by Finetuning on Synthetic Data",
+    authors: ["Zheyang Xiong", "Vasilis Papageorgiou", "Kangwook Lee", "Dimitris Papailiopoulos"],
+    venue: "ICLR",
     year: "2025",
-    abstract: "We present a comprehensive study of reasoning capabilities in large language models, exploring both theoretical foundations and empirical performance across diverse reasoning tasks. Our work provides insights into the limitations and potential of current LLM architectures for complex reasoning problems.",
+    abstract: "Recent studies have shown that Large Language Models (LLMs) struggle to accurately retrieve information and maintain reasoning capabilities when processing long-context inputs. To address these limitations, we propose a finetuning approach utilizing a carefully designed synthetic dataset comprising numerical key-value retrieval tasks. Our experiments on models like GPT-3.5 Turbo and Mistral 7B demonstrate that finetuning LLMs on this dataset significantly improves LLMs' information retrieval and reasoning capabilities in longer-context settings. We present an analysis of the finetuned models, illustrating the transfer of skills from synthetic to real task evaluations (e.g., 10.5% improvement on 20 documents MDQA at position 10 for GPT-3.5 Turbo). We also find that finetuned LLMs' performance on general benchmarks remains almost constant while LLMs finetuned on other baseline long-context augmentation data can encourage hallucination. Our study highlights the potential of finetuning on synthetic data for improving the performance of LLMs on longer-context tasks.",
     links: {
-      paper: "#", // Replace with actual paper URL
-      code: "#",  // Replace with actual code repository URL
-      website: "#" // Optional: project website
+      paper: "https://arxiv.org/abs/2406.19292"
     },
-    tags: ["LLMs", "Reasoning", "Theory", "Empirical Analysis"]
+    tags: ["LLMs", "Information Retrieval", "Synthetic Data", "Long Context"]
   },
   {
-    title: "Asynchronous Algorithms for Distributed Inference in Wireless Sensor Networks",
-    authors: ["Vasilis Papageorgiou", "Aggelos Bletsas"],
-    venue: "IEEE Transactions on Wireless Communications",
-    year: "2023",
-    abstract: "This work introduces novel asynchronous algorithms for distributed inference in wireless sensor networks, addressing challenges in energy efficiency and convergence guarantees. We provide theoretical analysis and experimental validation of our proposed methods.",
+    title: "Everything Everywhere All at Once: LLMs can In-Context Learn Multiple Tasks in Superposition",
+    authors: ["Zheyang Xiong", "Ziyang Cai", "John Cooper", "Albert Ge", "Vasilis Papageorgiou", "Zack Sifakis", "Angeliki Giannou", "Ziqian Lin", "Liu Yang", "Saurabh Agarwal", "Grigorios G Chrysos", "Samet Oymak", "Kangwook Lee", "Dimitris Papailiopoulos"],
+    venue: "ICML (Spotlight)",
+    year: "2025",
+    abstract: "Large Language Models (LLMs) have demonstrated remarkable in-context learning (ICL) capabilities. In this study, we explore a surprising phenomenon related to ICL: LLMs can perform multiple, computationally distinct ICL tasks simultaneously, during a single inference call, a capability we term 'task superposition'. We provide empirical evidence of this phenomenon across various LLM families and scales and show that this phenomenon emerges even if we train the model to in-context learn one task at a time. We offer theoretical explanations that this capability is well within the expressive power of transformers. We also explore how LLMs internally compose task vectors during superposition. Furthermore, we show that larger models can solve more ICL tasks in parallel, and better calibrate their output distribution. Our findings offer insights into the latent capabilities of LLMs, further substantiate the perspective of 'LLMs as superposition of simulators', and raise questions about the mechanisms enabling simultaneous task execution.",
     links: {
-      paper: "#", // Replace with actual paper URL
-      code: "#",  // Replace with actual code repository URL
+      paper: "https://arxiv.org/abs/2410.05603"
     },
-    tags: ["Wireless Networks", "Distributed Systems", "Inference", "Algorithms"]
+    tags: ["LLMs", "In-Context Learning", "Task Superposition", "Machine Learning"]
   },
-  // Add more publications here
+  {
+    title: "Design and implementation of ambiently powered Internet of Things-that-think With asynchronous inference",
+    authors: ["Vasilis Papageorgiou", "Athanasios Nichoritis", "Panagiotis Vasilakopoulos", "Georgios Vougioukas", "Aggelos Bletsas"],
+    venue: "IEEE Internet of Things Journal",
+    year: "2023",
+    abstract: "This work offers design and implementation of in-network inference, using message passing among ambiently powered wireless sensor network (WSN) terminals. The stochastic nature of ambient energy harvesting dictates intermittent operation of each WSN terminal and as such, the message passing inference algorithms should be robust to asynchronous operation. It is shown, perhaps for the first time in the literature (to the best of our knowledge), a proof of concept, where a WSN harvests energy from the environment and processes itself the collected information in a distributed manner, by converting the (network) inference task to a probabilistic, in-network message passing problem, often at the expense of increased total delay. Examples from Gaussian belief propagation and average consensus (AC) are provided, along with the derivation of a statistical convergence metric for the latter case. A k-means method is offered that maps the elements of the calculated vector to the different WSN terminals and overall execution delay (in number of iterations) is quantified. Interestingly, it is shown that there are divergent instances of the in-network message passing algorithms that become convergent, under asynchronous operation. Ambient solar energy harvesting availability is also studied, controlling the probability of successful (or not) message passing. Hopefully, this work will spark further interest for asynchronous message passing algorithms and technologies that enable in-network inference, toward ambiently powered, batteryless Internet of Things-That-Think.",
+    links: {
+      paper: "https://ieeexplore.ieee.org/abstract/document/10097494"
+    },
+    tags: ["IoT", "Ambient Power", "Asynchronous Inference", "Wireless Sensor Networks"]
+  },
+  {
+    title: "Towards ambiently powered inference on wireless sensor networks: Asynchrony is the key!",
+    authors: ["Vasilis Papageorgiou", "Athanasios Nichoritis", "Panagiotis Vasilakopoulos", "Georgios Vougioukas", "Aggelos Bletsas"],
+    venue: "2021 17th International Conference on Distributed Computing in Sensor Systems (DCOSS)",
+    year: "2021",
+    abstract: "Is it possible to build ultra-low power wireless sensor networks (WSN) that exploit the inherent parallel and distributed nature of powerful message passing/inference algorithms, embrace ultra-low power communication principles and make autonomous, in-network decisions, solely powered by the environment? While edge and cloud computing emerge, this work points towards the opposite direction, inspired by the fact that ambient energy, either from radio frequency (RF), sun, motion, temperature or even living organisms, has fixed (on average) density per surface (or volume). It is shown, perhaps for the first time in the literature (to the best of our knowledge), a proof of concept, where a WSN harvests energy from the environment and processes itself the collected information in a distributed manner, by converting the (network) inference task to a probabilistic, message passing problem. Examples from Gaussian Belief Propagation and Average Consensus are offered; ambient energy harvesting and availability are quantified, controling the probability of successful (or not) message passing. Such interrupted communication requires distributed algorithms robust to asynchrony, at the expense of increased overall delay. Simulation and experimental validation are offered in a WSN testbed with solar energy harvesting. Future work will focus on overall delay minimization.",
+    links: {
+      paper: "https://ieeexplore.ieee.org/abstract/document/9600006"
+    },
+    tags: ["Wireless Sensor Networks", "Distributed Computing", "Asynchronous Algorithms", "Ambient Power"]
+  }
 ];
 
 export const preprints = [

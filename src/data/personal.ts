@@ -41,8 +41,8 @@ export const socialLinks = [
     username: "yourusername"
   },
   {
-    name: "Twitter",
-    href: "https://twitter.com/yourusername", 
+    name: "X",
+    href: "https://x.com/yourusername", 
     username: "@yourusername"
   },
   {

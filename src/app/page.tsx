@@ -1,3 +1,7 @@
+'use client';
+
+import { useState } from 'react';
+import Image from "next/image";
 import Navigation from "@/components/Navigation";
 import { 
   GraduationCap, 
@@ -5,243 +9,237 @@ import {
   Mail, 
   ExternalLink, 
   Github, 
-  Twitter, 
   LinkedinIcon,
   FileText,
   Award,
-  Briefcase
+  ChevronDown,
+  ChevronUp
 } from "lucide-react";
+import { publications, formatAuthors } from "@/data/publications";
+import { news } from "@/data/news";
+import { socialLinks as importedSocialLinks } from "@/data/personal";
+import { getColleagueLink } from "@/data/colleagues";
 
-const socialLinks = [
-  {
-    name: "Email",
-    href: "mailto:vpapageorgio@wisc.edu",
-    icon: Mail,
-  },
-  {
-    name: "Google Scholar",
-    href: "https://scholar.google.com/citations?user=YOUR_ID",
-    icon: GraduationCap,
-  },
-  {
-    name: "GitHub",
-    href: "https://github.com/yourusername",
-    icon: Github,
-  },
-  {
-    name: "Twitter",
-    href: "https://twitter.com/yourusername",
-    icon: Twitter,
-  },
-  {
-    name: "LinkedIn",
-    href: "https://linkedin.com/in/yourusername",
-    icon: LinkedinIcon,
-  },
-];
+// Custom X.com icon component
+const XIcon = ({ className }: { className?: string }) => (
+  <svg
+    viewBox="0 0 24 24"
+    className={className}
+    fill="currentColor"
+  >
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+  </svg>
+);
 
-const publications = [
-  {
-    title: "Reasoning with Large Language Models: A Theoretical and Empirical Analysis",
-    authors: ["Vasilis Papageorgiou", "Dimitris Papailiopoulos"],
-    venue: "Under Review",
-    year: "2025",
-    abstract: "We present a comprehensive study of reasoning capabilities in large language models, exploring both theoretical foundations and empirical performance across diverse reasoning tasks.",
-    links: {
-      paper: "#",
-      code: "#",
-    }
-  },
-  {
-    title: "Asynchronous Algorithms for Distributed Inference in Wireless Sensor Networks",
-    authors: ["Vasilis Papageorgiou", "Aggelos Bletsas"],
-    venue: "IEEE Transactions on Wireless Communications",
-    year: "2023",
-    abstract: "This work introduces novel asynchronous algorithms for distributed inference in wireless sensor networks, addressing challenges in energy efficiency and convergence guarantees.",
-    links: {
-      paper: "#",
-      code: "#",
-    }
-  },
-];
+// Map social link names to their icons
+const iconMap = {
+  "Email": Mail,
+  "Google Scholar": GraduationCap,
+  "GitHub": Github,
+  "X": XIcon,
+  "LinkedIn": LinkedinIcon,
+};
 
-const news = [
-  {
-    date: "June 2024",
-    title: "Started internship at AWS AI Labs",
-    description: "Joined AWS AI Labs in Pasadena, CA as a research intern, working on advanced reasoning models and their applications."
-  },
-  {
-    date: "May 2024",
-    title: "Paper accepted at NeurIPS 2024",
-    description: "Our work on reasoning with large language models has been accepted for publication."
-  },
-  {
-    date: "January 2024",
-    title: "Advanced to PhD candidacy",
-    description: "Successfully passed comprehensive exams and advanced to PhD candidacy at UW-Madison."
-  },
-];
+// Add icons to imported social links
+const socialLinks = importedSocialLinks.map(link => ({
+  ...link,
+  icon: iconMap[link.name as keyof typeof iconMap]
+}));
 
 export default function Home() {
+  const [expandedAbstracts, setExpandedAbstracts] = useState<Set<number>>(new Set());
+
+  const toggleAbstract = (index: number) => {
+    const newExpanded = new Set(expandedAbstracts);
+    if (newExpanded.has(index)) {
+      newExpanded.delete(index);
+    } else {
+      newExpanded.add(index);
+    }
+    setExpandedAbstracts(newExpanded);
+  };
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Header */}
       <Navigation />
 
-      <main className="max-w-4xl mx-auto px-6 py-12">
+      <main className="max-w-4xl mx-auto px-4 py-8">
         {/* Hero Section */}
-        <section id="about" className="mb-16">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+        <section id="about" className="mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
             <div className="md:col-span-2">
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">
+              <h1 className="text-3xl font-bold text-gray-900 mb-3">
                 Vasilis Papageorgiou
               </h1>
-              <div className="flex items-center space-x-4 text-gray-600 mb-6">
+              <div className="flex items-center space-x-3 text-gray-600 mb-4 text-sm">
                 <div className="flex items-center space-x-1">
-                  <GraduationCap className="w-5 h-5" />
+                  <GraduationCap className="w-4 h-4" />
                   <span>PhD Student in Computer Science</span>
                 </div>
                 <div className="flex items-center space-x-1">
-                  <MapPin className="w-5 h-5" />
+                  <MapPin className="w-4 h-4" />
                   <span>UW-Madison</span>
                 </div>
               </div>
               
-              <div className="prose prose-lg text-gray-700 mb-8">
-                <p>
-                  I am a 3rd year PhD student in Computer Science at the University of Wisconsin-Madison, 
-                  advised by <a href="https://papail.io" className="text-blue-600 hover:text-blue-800">Dimitris Papailiopoulos</a>. 
+              <div className="prose prose-base text-gray-700 text-base leading-relaxed">
+                <p className="mb-3">
+                  Hello! I am a 3rd year PhD student in Computer Sciences at the University of Wisconsin-Madison, 
+                  advised by <a href={getColleagueLink("Dimitris Papailiopoulos")} className="text-blue-600 hover:text-blue-800">Dimitris Papailiopoulos</a>. 
                   My research interests revolve around Large Language Models (LLMs), Machine Learning, and Deep Learning, 
                   with a focus on both theoretical and practical aspects.
                 </p>
-                <p>
-                  Currently, I am working on reasoning models and their capabilities. I am also a research intern at 
-                  AWS AI Labs in Pasadena, CA, where I work on advanced AI systems and their real-world applications.
-                </p>
-                <p>
+                <p className="mb-3">
                   Previously, I earned my diploma in Electrical and Computer Engineering from the Technical University of Crete, 
-                  Greece, where I worked with <a href="#" className="text-blue-600 hover:text-blue-800">Prof. Aggelos Bletsas</a> 
+                  Greece, where I worked with <a href={getColleagueLink("Aggelos Bletsas")} className="text-blue-600 hover:text-blue-800">Prof. Aggelos Bletsas</a> 
                   on asynchronous algorithms for distributed inference in wireless sensor networks.
                 </p>
+                <p className="mb-0">
+                  Currently, I am also a research intern at AWS AI Labs in Pasadena, CA, where I work on reasoning models.
+                </p>
+              </div>
+            </div>
+
+            {/* Profile Image and Social Links */}
+            <div className="flex flex-col items-center">
+              <div className="relative mb-4">
+                <div className="w-52 h-52 rounded-2xl overflow-hidden border-4 border-white shadow-lg bg-gradient-to-br from-blue-100 to-indigo-200">
+                  <Image
+                    src="/profile.jpg"
+                    alt="Vasilis Papageorgiou"
+                    width={208}
+                    height={208}
+                    className="w-full h-full object-cover"
+                    priority
+                  />
+                </div>
               </div>
 
               {/* Social Links */}
-              <div className="flex flex-wrap gap-4">
+              <div className="flex justify-center gap-2">
                 {socialLinks.map((link) => {
                   const Icon = link.icon;
                   return (
                     <a
                       key={link.name}
                       href={link.href}
-                      className="flex items-center space-x-2 px-4 py-2 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-200 group"
+                      title={link.name}
+                      className="p-3 bg-white rounded-full border border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-200 group shadow-sm"
                       target={link.href.startsWith('http') ? '_blank' : undefined}
                       rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                     >
-                      <Icon className="w-4 h-4 text-gray-600 group-hover:text-blue-600" />
-                      <span className="text-sm text-gray-700 group-hover:text-blue-700">{link.name}</span>
-                      {link.href.startsWith('http') && (
-                        <ExternalLink className="w-3 h-3 text-gray-400 group-hover:text-blue-500" />
-                      )}
+                      <Icon className="w-5 h-5 text-gray-600 group-hover:text-blue-600" />
                     </a>
                   );
                 })}
               </div>
             </div>
-
-            {/* Profile Image */}
-            <div className="flex justify-center md:justify-end">
-              <div className="relative">
-                <div className="w-48 h-48 bg-gradient-to-br from-blue-100 to-indigo-200 rounded-2xl flex items-center justify-center border-4 border-white shadow-lg">
-                  {/* Placeholder for profile image */}
-                  <div className="text-gray-500 text-center">
-                    <div className="w-16 h-16 bg-gray-300 rounded-full mx-auto mb-2"></div>
-                    <p className="text-sm">Profile Photo</p>
-                    <p className="text-xs text-gray-400">Add your photo here</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Current Position Highlight */}
-        <section className="mb-16">
-          <div className="bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl p-8 text-white">
-            <div className="flex items-center space-x-3 mb-4">
-              <Briefcase className="w-6 h-6" />
-              <h2 className="text-2xl font-bold">Current Position</h2>
-            </div>
-            <p className="text-lg text-blue-100">
-              Research Intern at <span className="font-semibold">AWS AI Labs</span>, Pasadena, CA
-            </p>
-            <p className="text-blue-100 mt-2">
-              Working on advanced reasoning models and their applications in real-world AI systems.
-            </p>
-          </div>
-        </section>
-
-        {/* Publications */}
-        <section id="publications" className="mb-16">
-          <div className="flex items-center space-x-3 mb-8">
-            <Award className="w-6 h-6 text-blue-600" />
-            <h2 className="text-3xl font-bold text-gray-900">Publications</h2>
-          </div>
-          
-          <div className="space-y-6">
-            {publications.map((pub, index) => (
-              <div key={index} className="bg-white rounded-xl p-6 border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all duration-200">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">{pub.title}</h3>
-                <p className="text-gray-600 mb-2">
-                  {pub.authors.map((author, i) => (
-                    <span key={i} className={author === "Vasilis Papageorgiou" ? "font-medium" : ""}>
-                      {author}{i < pub.authors.length - 1 ? ", " : ""}
-                    </span>
-                  ))}
-                </p>
-                <p className="text-blue-600 font-medium mb-3">{pub.venue} ({pub.year})</p>
-                <p className="text-gray-700 text-sm mb-4">{pub.abstract}</p>
-                <div className="flex space-x-4">
-                  <a 
-                    href={pub.links.paper} 
-                    className="flex items-center space-x-1 text-blue-600 hover:text-blue-800 text-sm"
-                  >
-                    <FileText className="w-4 h-4" />
-                    <span>Paper</span>
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-                  {pub.links.code && (
-                    <a 
-                      href={pub.links.code} 
-                      className="flex items-center space-x-1 text-blue-600 hover:text-blue-800 text-sm"
-                    >
-                      <Github className="w-4 h-4" />
-                      <span>Code</span>
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
-                  )}
-                </div>
-              </div>
-            ))}
           </div>
         </section>
 
         {/* News */}
-        <section id="news" className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">News</h2>
+        <section id="news" className="mb-10">
+          <h2 className="text-2xl font-bold text-gray-900 mb-5">News</h2>
           
-          <div className="space-y-4">
+          <div className="space-y-3">
             {news.map((item, index) => (
-              <div key={index} className="bg-white rounded-xl p-6 border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all duration-200">
-                <div className="flex items-start space-x-4">
+              <div key={index} className="bg-white rounded-lg p-4 border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all duration-200">
+                <div className="flex items-start space-x-3">
                   <div className="text-blue-600 font-medium text-sm min-w-fit">{item.date}</div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">{item.title}</h3>
+                    <h3 className="font-semibold text-gray-900 mb-1 text-base">{item.title}</h3>
                     <p className="text-gray-700 text-sm">{item.description}</p>
                   </div>
                 </div>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* Publications */}
+        <section id="publications" className="mb-10">
+          <div className="flex items-center space-x-2 mb-5">
+            <Award className="w-5 h-5 text-blue-600" />
+            <h2 className="text-2xl font-bold text-gray-900">Publications</h2>
+          </div>
+          
+          <div className="space-y-4">
+            {publications.map((pub, index) => {
+              const isExpanded = expandedAbstracts.has(index);
+              const formattedAuthors = formatAuthors(pub.authors);
+              return (
+                <div key={index} className="bg-white rounded-lg p-4 border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all duration-200">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-1">{pub.title}</h3>
+                  <p className="text-gray-900 font-medium mb-1 text-sm">{pub.venue} ({pub.year})</p>
+                  <p className="text-gray-600 mb-3 text-sm">
+                    {formattedAuthors.map((author, i) => (
+                      <span key={i} className={author.name === "Vasilis Papageorgiou" ? "font-bold underline" : ""}>
+                        {author.link ? (
+                          <a 
+                            href={author.link} 
+                            className="text-blue-600 hover:text-blue-800 hover:underline"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {author.name}
+                          </a>
+                        ) : (
+                          author.name
+                        )}
+                        {i < formattedAuthors.length - 1 ? ", " : ""}
+                      </span>
+                    ))}
+                  </p>
+                  
+                  {/* Abstract Toggle Button */}
+                  <button
+                    onClick={() => toggleAbstract(index)}
+                    className="flex items-center space-x-1 text-gray-600 hover:text-blue-600 transition-colors mb-2"
+                  >
+                    {isExpanded ? (
+                      <ChevronUp className="w-3 h-3" />
+                    ) : (
+                      <ChevronDown className="w-3 h-3" />
+                    )}
+                    <span className="text-xs font-medium">
+                      {isExpanded ? "Hide Abstract" : "Show Abstract"}
+                    </span>
+                  </button>
+
+                  {/* Collapsible Abstract */}
+                  {isExpanded && (
+                    <div className="mb-3 p-3 bg-gray-50 rounded-lg border-l-4 border-blue-500">
+                      <p className="text-gray-700 text-xs leading-relaxed">{pub.abstract}</p>
+                    </div>
+                  )}
+
+                  <div className="flex space-x-3">
+                    <a 
+                      href={pub.links.paper} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center space-x-1 text-blue-600 hover:text-blue-800 text-xs"
+                    >
+                      <FileText className="w-3 h-3" />
+                      <span>Paper</span>
+                      <ExternalLink className="w-2 h-2" />
+                    </a>
+                    {pub.links.code && (
+                      <a 
+                        href={pub.links.code} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center space-x-1 text-blue-600 hover:text-blue-800 text-xs"
+                      >
+                        <Github className="w-3 h-3" />
+                        <span>Code</span>
+                        <ExternalLink className="w-2 h-2" />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </section>
       </main>
@@ -253,7 +251,7 @@ export default function Home() {
             © 2025 Vasilis Papageorgiou. All rights reserved.
           </p>
           <p className="text-gray-500 text-sm">
-            PhD Student in Computer Science at University of Wisconsin-Madison
+            PhD Student in Computer Sciences at the University of Wisconsin-Madison
           </p>
         </div>
       </footer>
