@@ -8,8 +8,8 @@ export default function Navigation() {
 
   const navLinks = [
     { href: '#about', label: 'About' },
-    { href: '#publications', label: 'Publications' },
     { href: '#news', label: 'News' },
+    { href: '#publications', label: 'Publications' },
   ];
 
   return (
