@@ -15,7 +15,7 @@ import {
 const socialLinks = [
   {
     name: "Email",
-    href: "mailto:vpapageorgiou@wisc.edu",
+    href: "mailto:vpapageorgio@wisc.edu",
     icon: Mail,
   },
   {

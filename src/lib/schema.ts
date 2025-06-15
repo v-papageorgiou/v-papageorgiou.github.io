@@ -28,7 +28,7 @@ export const personSchema: WithContext<Person> = {
     'Computer Science',
     'Artificial Intelligence'
   ],
-  email: 'vpapageorgiou@wisc.edu',
+  email: 'vpapageorgio@wisc.edu',
   url: 'https://v-papageorgiou.github.io',
   sameAs: [
     'https://scholar.google.com/citations?user=YOUR_ID',

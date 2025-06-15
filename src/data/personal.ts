@@ -4,7 +4,7 @@ export const personalInfo = {
   title: "PhD Student in Computer Science",
   affiliation: "University of Wisconsin-Madison",
   advisor: "Dimitris Papailiopoulos",
-  email: "vpapageorgiou@wisc.edu",
+  email: "vpapageorgio@wisc.edu",
   currentPosition: {
     title: "Research Intern",
     company: "AWS AI Labs",
@@ -27,8 +27,8 @@ export const personalInfo = {
 export const socialLinks = [
   {
     name: "Email",
-    href: "mailto:vpapageorgiou@wisc.edu",
-    username: "vpapageorgiou@wisc.edu"
+    href: "mailto:vpapageorgio@wisc.edu",
+    username: "vpapageorgio@wisc.edu"
   },
   {
     name: "Google Scholar",

@@ -105,6 +105,6 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## Contact
 
-Vasilis Papageorgiou - [vpapageorgiou@wisc.edu](mailto:vpapageorgiou@wisc.edu)
+Vasilis Papageorgiou - [vpapageorgio@wisc.edu](mailto:vpapageorgio@wisc.edu)
 
 Project Link: [https://github.com/yourusername/academic-website](https://github.com/yourusername/academic-website)
