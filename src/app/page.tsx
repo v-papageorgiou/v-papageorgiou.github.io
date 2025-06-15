@@ -59,7 +59,7 @@ export default function Home() {
     setExpandedAbstracts(newExpanded);
   };
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="min-h-screen bg-black bg-gradient-to-br from-gray-900 via-purple-900 to-black">
       {/* Header */}
       <Navigation />
 
@@ -68,30 +68,30 @@ export default function Home() {
         <section id="about" className="mb-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
             <div className="md:col-span-2">
-              <h1 className="text-3xl font-bold text-gray-900 mb-3">
+              <h1 className="text-3xl font-bold text-transparent bg-gradient-to-r from-cyan-400 via-pink-400 to-yellow-400 bg-clip-text mb-3 drop-shadow-lg">
                 Vasilis Papageorgiou
               </h1>
-              <div className="flex items-center space-x-3 text-gray-600 mb-4 text-sm">
+              <div className="flex items-center space-x-3 text-cyan-300 mb-4 text-sm">
                 <div className="flex items-center space-x-1">
-                  <GraduationCap className="w-4 h-4" />
+                  <GraduationCap className="w-4 h-4 text-pink-400" />
                   <span>PhD Student in Computer Science</span>
                 </div>
                 <div className="flex items-center space-x-1">
-                  <MapPin className="w-4 h-4" />
+                  <MapPin className="w-4 h-4 text-yellow-400" />
                   <span>UW-Madison</span>
                 </div>
               </div>
               
-              <div className="prose prose-base text-gray-700 text-base leading-relaxed">
+              <div className="prose prose-base text-gray-100 text-base leading-relaxed">
                 <p className="mb-3">
                   Hello! I am a 3rd year PhD student in Computer Sciences at the University of Wisconsin-Madison, 
-                  advised by <a href={getColleagueLink("Dimitris Papailiopoulos")} className="text-blue-600 hover:text-blue-800">Dimitris Papailiopoulos</a>. 
+                  advised by <a href={getColleagueLink("Dimitris Papailiopoulos")} className="text-cyan-400 hover:text-pink-400 transition-colors duration-300 hover:drop-shadow-[0_0_8px_rgba(236,72,153,0.8)]">Dimitris Papailiopoulos</a>. 
                   My research interests revolve around Large Language Models (LLMs), Machine Learning, and Deep Learning, 
                   with a focus on both theoretical and practical aspects.
                 </p>
                 <p className="mb-3">
                   Previously, I earned my diploma in Electrical and Computer Engineering from the Technical University of Crete, 
-                  Greece, where I worked with <a href={getColleagueLink("Aggelos Bletsas")} className="text-blue-600 hover:text-blue-800">Prof. Aggelos Bletsas</a> 
+                  Greece, where I worked with <a href={getColleagueLink("Aggelos Bletsas")} className="text-cyan-400 hover:text-pink-400 transition-colors duration-300 hover:drop-shadow-[0_0_8px_rgba(236,72,153,0.8)]">Prof. Aggelos Bletsas</a> 
                   on asynchronous algorithms for distributed inference in wireless sensor networks.
                 </p>
                 <p className="mb-0">
@@ -103,7 +103,7 @@ export default function Home() {
             {/* Profile Image and Social Links */}
             <div className="flex flex-col items-center">
               <div className="relative mb-4">
-                <div className="w-52 h-52 rounded-2xl overflow-hidden border-4 border-white shadow-lg bg-gradient-to-br from-blue-100 to-indigo-200">
+                <div className="w-52 h-52 rounded-2xl overflow-hidden border-4 border-cyan-400 shadow-lg bg-gradient-to-br from-purple-800 to-pink-800 shadow-cyan-400/50 drop-shadow-[0_0_20px_rgba(34,211,238,0.6)]">
                   <Image
                     src="/profile.jpg"
                     alt="Vasilis Papageorgiou"
@@ -124,11 +124,11 @@ export default function Home() {
                       key={link.name}
                       href={link.href}
                       title={link.name}
-                      className="p-3 bg-white rounded-full border border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-200 group shadow-sm"
+                      className="p-3 bg-gray-900/80 rounded-full border border-cyan-400 hover:border-pink-400 hover:bg-purple-900/60 transition-all duration-300 group shadow-lg hover:shadow-pink-400/50 hover:drop-shadow-[0_0_15px_rgba(236,72,153,0.8)]"
                       target={link.href.startsWith('http') ? '_blank' : undefined}
                       rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                     >
-                      <Icon className="w-5 h-5 text-gray-600 group-hover:text-blue-600" />
+                      <Icon className="w-5 h-5 text-cyan-400 group-hover:text-pink-400 transition-colors duration-300" />
                     </a>
                   );
                 })}
@@ -139,16 +139,16 @@ export default function Home() {
 
         {/* News */}
         <section id="news" className="mb-10">
-          <h2 className="text-2xl font-bold text-gray-900 mb-5">News</h2>
+          <h2 className="text-2xl font-bold text-transparent bg-gradient-to-r from-pink-400 to-cyan-400 bg-clip-text mb-5 drop-shadow-lg">News</h2>
           
           <div className="space-y-3">
             {news.map((item, index) => (
-              <div key={index} className="bg-white rounded-lg p-4 border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all duration-200">
+              <div key={index} className="bg-gray-900/60 backdrop-blur-md rounded-lg p-4 border border-cyan-400/50 hover:border-pink-400 hover:shadow-lg hover:shadow-pink-400/30 transition-all duration-300 hover:drop-shadow-[0_0_15px_rgba(236,72,153,0.4)]">
                 <div className="flex items-start space-x-3">
-                  <div className="text-blue-600 font-medium text-sm min-w-fit">{item.date}</div>
+                  <div className="text-cyan-400 font-medium text-sm min-w-fit">{item.date}</div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-1 text-base">{item.title}</h3>
-                    <p className="text-gray-700 text-sm">{item.description}</p>
+                    <h3 className="font-semibold text-pink-300 mb-1 text-base">{item.title}</h3>
+                    <p className="text-gray-100 text-sm">{item.description}</p>
                   </div>
                 </div>
               </div>
@@ -159,8 +159,8 @@ export default function Home() {
         {/* Publications */}
         <section id="publications" className="mb-10">
           <div className="flex items-center space-x-2 mb-5">
-            <Award className="w-5 h-5 text-blue-600" />
-            <h2 className="text-2xl font-bold text-gray-900">Publications</h2>
+            <Award className="w-5 h-5 text-yellow-400 drop-shadow-[0_0_8px_rgba(250,204,21,0.8)]" />
+            <h2 className="text-2xl font-bold text-transparent bg-gradient-to-r from-yellow-400 to-pink-400 bg-clip-text drop-shadow-lg">Publications</h2>
           </div>
           
           <div className="space-y-4">
@@ -168,16 +168,16 @@ export default function Home() {
               const isExpanded = expandedAbstracts.has(index);
               const formattedAuthors = formatAuthors(pub.authors);
               return (
-                <div key={index} className="bg-white rounded-lg p-4 border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all duration-200">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-1">{pub.title}</h3>
-                  <p className="text-gray-900 font-medium mb-1 text-sm">{pub.venue} ({pub.year})</p>
-                  <p className="text-gray-600 mb-3 text-sm">
+                <div key={index} className="bg-gray-900/60 backdrop-blur-md rounded-lg p-4 border border-purple-400/50 hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-400/30 transition-all duration-300 hover:drop-shadow-[0_0_15px_rgba(34,211,238,0.4)]">
+                  <h3 className="text-xl font-semibold text-transparent bg-gradient-to-r from-cyan-300 to-pink-300 bg-clip-text mb-1">{pub.title}</h3>
+                  <p className="text-yellow-300 font-medium mb-1 text-sm">{pub.venue} ({pub.year})</p>
+                  <p className="text-gray-200 mb-3 text-sm">
                     {formattedAuthors.map((author, i) => (
-                      <span key={i} className={author.name === "Vasilis Papageorgiou" ? "font-bold underline" : ""}>
+                      <span key={i} className={author.name === "Vasilis Papageorgiou" ? "font-bold underline text-pink-300" : ""}>
                         {author.link && author.link !== "#" ? (
                           <a 
                             href={author.link} 
-                            className="text-blue-600 hover:text-blue-800 hover:underline"
+                            className="text-cyan-400 hover:text-pink-400 hover:underline transition-colors duration-300 hover:drop-shadow-[0_0_8px_rgba(236,72,153,0.8)]"
                             target="_blank"
                             rel="noopener noreferrer"
                           >
@@ -194,7 +194,7 @@ export default function Home() {
                   {/* Abstract Toggle Button */}
                   <button
                     onClick={() => toggleAbstract(index)}
-                    className="flex items-center space-x-1 text-gray-600 hover:text-blue-600 transition-colors mb-2"
+                    className="flex items-center space-x-1 text-purple-300 hover:text-cyan-400 transition-colors duration-300 mb-2 hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]"
                   >
                     {isExpanded ? (
                       <ChevronUp className="w-3 h-3" />
@@ -208,8 +208,8 @@ export default function Home() {
 
                   {/* Collapsible Abstract */}
                   {isExpanded && (
-                    <div className="mb-3 p-3 bg-gray-50 rounded-lg border-l-4 border-blue-500">
-                      <p className="text-gray-700 text-xs leading-relaxed">{pub.abstract}</p>
+                    <div className="mb-3 p-3 bg-purple-900/40 rounded-lg border-l-4 border-cyan-400 backdrop-blur-sm">
+                      <p className="text-gray-100 text-xs leading-relaxed">{pub.abstract}</p>
                     </div>
                   )}
 
@@ -218,7 +218,7 @@ export default function Home() {
                       href={pub.links.paper} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="flex items-center space-x-1 text-blue-600 hover:text-blue-800 text-xs"
+                      className="flex items-center space-x-1 text-cyan-400 hover:text-pink-400 text-xs transition-colors duration-300 hover:drop-shadow-[0_0_8px_rgba(236,72,153,0.8)]"
                     >
                       <FileText className="w-3 h-3" />
                       <span>Paper</span>
@@ -229,7 +229,7 @@ export default function Home() {
                         href={pub.links.code} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="flex items-center space-x-1 text-blue-600 hover:text-blue-800 text-xs"
+                        className="flex items-center space-x-1 text-cyan-400 hover:text-pink-400 text-xs transition-colors duration-300 hover:drop-shadow-[0_0_8px_rgba(236,72,153,0.8)]"
                       >
                         <Github className="w-3 h-3" />
                         <span>Code</span>
@@ -245,12 +245,12 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
+      <footer className="bg-black border-t border-cyan-400/30 text-white py-12">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <p className="text-gray-400 mb-4">
+          <p className="text-gray-300 mb-4">
             © 2025 Vasilis Papageorgiou. All rights reserved.
           </p>
-          <p className="text-gray-500 text-sm">
+          <p className="text-gray-400 text-sm">
             PhD Student in Computer Sciences at the University of Wisconsin-Madison
           </p>
         </div>
