@@ -92,8 +92,7 @@ export default function Home() {
                 </p>
                 <p className="mb-3">
                   Previously, I earned my diploma in Electrical and Computer Engineering from the Technical University of Crete, 
-                  Greece, where I worked with <a href={getColleagueLink("Aggelos Bletsas")} className={`${colors.cyanLight} ${colors.textLinkHover} ${transitions.colors} ${effects.glowCyan}`}>Prof. Aggelos Bletsas</a> 
-                  on asynchronous algorithms for distributed inference in wireless sensor networks.
+                  Greece, where I worked with <a href={getColleagueLink("Aggelos Bletsas")} className={`${colors.cyanLight} ${colors.textLinkHover} ${transitions.colors} ${effects.glowCyan}`}>Prof. Aggelos Bletsas</a>  on asynchronous algorithms for distributed inference in wireless sensor networks.
                 </p>
                 <p className="mb-0">
                   Currently, I am also a research intern at AWS AI Labs in Pasadena, CA, where I work on reasoning models.

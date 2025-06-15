@@ -10,7 +10,7 @@ export const colleagues: Record<string, Colleague> = {
   },
   "Aggelos Bletsas": {
     name: "Aggelos Bletsas",
-    website: "#" // Replace with actual website
+    website: "https://www.winlab.rutgers.edu/~aggelos/"
   },
   "Zheyang Xiong": {
     name: "Zheyang Xiong",
