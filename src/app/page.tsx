@@ -95,7 +95,7 @@ export default function Home() {
                   Greece, where I worked with <a href={getColleagueLink("Aggelos Bletsas")} className={`${colors.cyanLight} ${colors.textLinkHover} ${transitions.colors} ${effects.glowCyan}`}>Prof. Aggelos Bletsas</a>  on asynchronous algorithms for distributed inference in wireless sensor networks.
                 </p>
                 <p className="mb-0">
-                  Currently, I am also a research intern at AWS AI Labs in Pasadena, CA, where I work on reasoning models.
+                  Currently, I am also a research intern at AWS AI Labs in Pasadena, CA, where I am working on reasoning models.
                 </p>
               </div>
             </div>
