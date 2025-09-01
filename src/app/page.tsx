@@ -85,7 +85,7 @@ export default function Home() {
               
               <div className={`prose prose-base ${colors.textBody} text-base leading-relaxed`}>
                 <p className="mb-3">
-                  Hello! I am a 3rd year PhD student in Computer Sciences at the University of Wisconsin-Madison, 
+                  Hello! I am a 4th year PhD student in Computer Sciences at the University of Wisconsin-Madison, 
                   advised by <a href={getColleagueLink("Dimitris Papailiopoulos")} className={`${colors.cyanLight} ${colors.textLinkHover} ${transitions.colors} ${effects.glowCyan}`}>Dimitris Papailiopoulos</a>. 
                   My research interests revolve around Large Language Models (LLMs), Machine Learning, and Deep Learning, 
                   with a focus on both theoretical and practical aspects.

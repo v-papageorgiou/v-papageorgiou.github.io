@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     default: "Vasilis Papageorgiou - PhD Student at UW-Madison",
     template: "%s | Vasilis Papageorgiou"
   },
-  description: "Vasilis Papageorgiou is a 3rd year PhD student in Computer Science at UW-Madison, working on LLMs, ML, and Deep Learning with a focus on reasoning models. Currently an intern at AWS AI Labs.",
+  description: "Vasilis Papageorgiou is a 4th year PhD student in Computer Science at UW-Madison, working on LLMs, ML, and Deep Learning with a focus on reasoning models. Currently an intern at AWS AI Labs.",
   keywords: ["Vasilis Papageorgiou", "PhD", "Computer Science", "UW-Madison", "Machine Learning", "Deep Learning", "LLMs", "Reasoning Models", "AWS AI Labs"],
   authors: [{ name: "Vasilis Papageorgiou" }],
   creator: "Vasilis Papageorgiou",
