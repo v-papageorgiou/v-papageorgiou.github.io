@@ -31,9 +31,9 @@ export const personSchema: WithContext<Person> = {
   email: 'vpapageorgio@wisc.edu',
   url: 'https://v-papageorgiou.github.io',
   sameAs: [
-    'https://scholar.google.com/citations?user=YOUR_ID',
-    'https://github.com/yourusername',
-    'https://twitter.com/yourusername',
-    'https://linkedin.com/in/yourusername'
+    'https://scholar.google.com/citations?user=dUQ-VYsAAAAJ',
+    'https://github.com/v-papageorgiou',
+    'https://x.com/vpapageorgiou_',
+    'https://linkedin.com/in/v-papageorgiou'
   ]
 };

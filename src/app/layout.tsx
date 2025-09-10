@@ -14,9 +14,13 @@ export const metadata: Metadata = {
     template: "%s | Vasilis Papageorgiou"
   },
   description: "Vasilis Papageorgiou is a 4th year PhD student in Computer Science at UW-Madison, working on LLMs, ML, and Deep Learning with a focus on reasoning models. Currently an intern at AWS AI Labs.",
-  keywords: ["Vasilis Papageorgiou", "PhD", "Computer Science", "UW-Madison", "Machine Learning", "Deep Learning", "LLMs", "Reasoning Models", "AWS AI Labs"],
+  keywords: ["Vasilis Papageorgiou", "PhD", "Computer Science", "UW-Madison", "Machine Learning", "Deep Learning", "LLMs", "Reasoning Models", "AWS AI Labs", "Dimitris Papailiopoulos", "Technical University of Crete"],
   authors: [{ name: "Vasilis Papageorgiou" }],
   creator: "Vasilis Papageorgiou",
+  metadataBase: new URL('https://v-papageorgiou.github.io'),
+  alternates: {
+    canonical: 'https://v-papageorgiou.github.io',
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -24,11 +28,19 @@ export const metadata: Metadata = {
     siteName: "Vasilis Papageorgiou",
     title: "Vasilis Papageorgiou - PhD Student at UW-Madison",
     description: "PhD student in Computer Science at UW-Madison, working on LLMs, ML, and Deep Learning with a focus on reasoning models.",
+    images: [{
+      url: "https://v-papageorgiou.github.io/profile.jpg",
+      width: 400,
+      height: 400,
+      alt: "Vasilis Papageorgiou",
+    }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Vasilis Papageorgiou - PhD Student at UW-Madison",
     description: "PhD student in Computer Science at UW-Madison, working on LLMs, ML, and Deep Learning with a focus on reasoning models.",
+    images: ["https://v-papageorgiou.github.io/profile.jpg"],
+    creator: "@vpapageorgiou_",
   },
   robots: {
     index: true,
