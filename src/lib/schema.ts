@@ -4,6 +4,7 @@ export const personSchema: WithContext<Person> = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Vasilis Papageorgiou',
+  image: 'https://v-papageorgiou.github.io/profile.jpg',
   jobTitle: 'PhD Student in Computer Science',
   affiliation: {
     '@type': 'Organization',

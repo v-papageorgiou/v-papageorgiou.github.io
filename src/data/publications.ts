@@ -18,9 +18,12 @@ export interface Publication {
 export const formatAuthors = (authors: string[]) => {
   return authors.map(author => {
     const colleague = colleagues[author];
+    const website = colleague?.website;
     return {
       name: author,
-      link: colleague?.website
+      link: website && website !== '#'
+        ? website
+        : undefined
     };
   });
 };

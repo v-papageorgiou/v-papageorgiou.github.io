@@ -7,19 +7,30 @@ import {
   GraduationCap, 
   MapPin, 
   Mail, 
-  ExternalLink, 
-  Github, 
+  Github,
   LinkedinIcon,
   FileText,
-  Award,
-  ChevronDown,
-  ChevronUp
+  Award
 } from "lucide-react";
+import Publication from "@/components/Publication";
 import { publications, formatAuthors } from "@/data/publications";
 import { news } from "@/data/news";
 import { socialLinks as importedSocialLinks } from "@/data/personal";
 import { getColleagueLink } from "@/data/colleagues";
 import { colors, effects, transitions, classes } from "@/styles/theme";
+
+const formatNewsDate = (isoDate: string) => {
+  const parsed = new Date(isoDate);
+  if (Number.isNaN(parsed.getTime())) {
+    return isoDate;
+  }
+
+  return parsed.toLocaleDateString(undefined, {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+};
 
 // Custom X.com icon component
 const XIcon = ({ className }: { className?: string }) => (
@@ -64,10 +75,10 @@ export default function Home() {
       {/* Header */}
       <Navigation />
 
-      <main className="max-w-4xl mx-auto px-4 py-8">
+      <main id="main-content" className="max-w-4xl mx-auto px-4 py-8">
         {/* Hero Section */}
         <section id="about" className="mb-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 lg:gap-12 items-start">
             <div className="md:col-span-2">
               <h1 className={`text-3xl font-bold ${colors.cyanLight} mb-3 ${effects.dropShadow}`}>
                 Vasilis Papageorgiou
@@ -82,13 +93,12 @@ export default function Home() {
                   <span>UW-Madison</span>
                 </div>
               </div>
-              
+
               <div className={`prose prose-base ${colors.textBody} text-base leading-relaxed`}>
                 <p className="mb-3">
                   Hello! I am a 4th year PhD student in Computer Sciences at the University of Wisconsin-Madison, 
                   advised by <a href={getColleagueLink("Dimitris Papailiopoulos")} className={`${colors.cyanLight} ${colors.textLinkHover} ${transitions.colors} ${effects.glowCyan}`}>Dimitris Papailiopoulos</a>. 
-                  My research interests revolve around Large Language Models (LLMs), Machine Learning, and Deep Learning, 
-                  with a focus on both theoretical and practical aspects.
+                  My research interests revolve around LLMs, Reasoning, Machine Learning, and Deep Learning.
                 </p>
                 <p className="mb-3">
                   Previously, I earned my diploma in Electrical and Computer Engineering from the Technical University of Crete, 
@@ -158,10 +168,27 @@ export default function Home() {
             {news.map((item, index) => (
               <div key={index} className={classes.card}>
                 <div className="flex items-start space-x-3">
-                  <div className={`${colors.cyan} font-medium text-sm min-w-fit`}>{item.date}</div>
-                  <div>
-                    <h3 className={`font-semibold ${colors.cyanDark} mb-1 text-base`}>{item.title}</h3>
-                    <p className={`${colors.textBody} text-sm`}>{item.description}</p>
+                  <time
+                    dateTime={item.date}
+                    className={`${colors.cyan} font-medium text-sm min-w-fit`}
+                  >
+                    {formatNewsDate(item.date)}
+                  </time>
+                  <div className="flex-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h3 className={`font-semibold ${colors.cyanDark} text-base`}>{item.title}</h3>
+                      {item.category && (
+                        <span className={`text-[11px] uppercase tracking-wide px-2 py-0.5 rounded-full border ${colors.borderSocial} ${colors.textFooterSecondary}`}>
+                          {item.category}
+                        </span>
+                      )}
+                      {item.highlight && (
+                        <span className={`text-[11px] uppercase tracking-wide px-2 py-0.5 rounded-full bg-cyan-500/20 border border-cyan-400/40 text-cyan-200`}>
+                          Highlight
+                        </span>
+                      )}
+                    </div>
+                    <p className={`${colors.textBody} text-sm mt-1`}>{item.description}</p>
                   </div>
                 </div>
               </div>
@@ -180,77 +207,21 @@ export default function Home() {
             {publications.map((pub, index) => {
               const isExpanded = expandedAbstracts.has(index);
               const formattedAuthors = formatAuthors(pub.authors);
+
               return (
-                <div key={index} className={classes.card}>
-                  <h3 className={`text-xl font-semibold ${colors.cyanDark} mb-1`}>{pub.title}</h3>
-                  <p className={`${colors.orange} font-medium mb-1 text-sm`}>{pub.venue} ({pub.year})</p>
-                  <p className={`${colors.textSecondary} mb-3 text-sm`}>
-                    {formattedAuthors.map((author, i) => (
-                      <span key={i} className={author.name === "Vasilis Papageorgiou" ? `font-bold underline ${colors.orange}` : ""}>
-                        {author.link && author.link !== "#" ? (
-                          <a 
-                            href={author.link} 
-                            className={`${colors.cyan} ${colors.textLinkHover} hover:underline ${transitions.colors} ${effects.glowCyan}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            {author.name}
-                          </a>
-                        ) : (
-                          author.name
-                        )}
-                        {i < formattedAuthors.length - 1 ? ", " : ""}
-                      </span>
-                    ))}
-                  </p>
-                  
-                  {/* Abstract Toggle Button */}
-                  <button
-                    onClick={() => toggleAbstract(index)}
-                    className={`flex items-center space-x-1 ${colors.cyanLight} ${colors.textLinkHover} ${transitions.colors} mb-2 ${effects.glowCyan}`}
-                  >
-                    {isExpanded ? (
-                      <ChevronUp className="w-3 h-3" />
-                    ) : (
-                      <ChevronDown className="w-3 h-3" />
-                    )}
-                    <span className="text-xs font-medium">
-                      {isExpanded ? "Hide Abstract" : "Show Abstract"}
-                    </span>
-                  </button>
-
-                  {/* Collapsible Abstract */}
-                  {isExpanded && (
-                    <div className={`mb-3 p-3 ${colors.bgAbstract} rounded-lg border-l-4 ${colors.borderAbstract} ${colors.bgAbstract}`}>
-                      <p className={`${colors.textBody} text-xs leading-relaxed`}>{pub.abstract}</p>
-                    </div>
-                  )}
-
-                  <div className="flex space-x-3">
-                    <a 
-                      href={pub.links.paper} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className={`flex items-center space-x-1 ${colors.cyan} ${colors.textLinkHover} text-xs ${transitions.colors} ${effects.glowCyan}`}
-                    >
-                      <FileText className="w-3 h-3" />
-                      <span>Paper</span>
-                      <ExternalLink className="w-2 h-2" />
-                    </a>
-                    {pub.links.code && (
-                      <a 
-                        href={pub.links.code} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className={`flex items-center space-x-1 ${colors.cyan} ${colors.textLinkHover} text-xs ${transitions.colors} ${effects.glowCyan}`}
-                      >
-                        <Github className="w-3 h-3" />
-                        <span>Code</span>
-                        <ExternalLink className="w-2 h-2" />
-                      </a>
-                    )}
-                  </div>
-                </div>
+                <Publication
+                  key={pub.title}
+                  title={pub.title}
+                  authors={formattedAuthors}
+                  venue={pub.venue}
+                  year={pub.year}
+                  abstract={pub.abstract}
+                  links={pub.links}
+                  tags={pub.tags}
+                  isExpanded={isExpanded}
+                  onToggle={() => toggleAbstract(index)}
+                  abstractId={`abstract-${index}`}
+                />
               );
             })}
           </div>

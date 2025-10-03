@@ -13,11 +13,15 @@ export default function Navigation() {
     { href: '#news', label: 'News' },
   ];
 
+  const mobileMenuId = 'primary-navigation';
+
   return (
     <header className={`${colors.bgNav} border-b ${colors.borderNav} sticky top-0 z-50`}>
       <div className="max-w-4xl mx-auto px-6 py-4">
         <nav className="flex justify-between items-center">
-          <h1 className={`text-xl font-bold ${colors.orange} ${effects.dropShadow}`}>Vasilis Papageorgiou</h1>
+          <span className={`text-xl font-bold ${colors.orange} ${effects.dropShadow}`}>
+            Vasilis Papageorgiou
+          </span>
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-6">
@@ -45,36 +49,39 @@ export default function Navigation() {
             className={`md:hidden p-2 ${colors.textNavLink} ${colors.textNavLinkHover} ${transitions.colors}`}
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle navigation menu"
+            aria-expanded={isOpen}
+            aria-controls={mobileMenuId}
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </nav>
 
         {/* Mobile Navigation Menu */}
-        {isOpen && (
-          <div className={`md:hidden mt-4 pb-4 border-t ${colors.borderNav}`}>
-            <div className="flex flex-col space-y-3 pt-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className={`${classes.navLink} px-2 py-1`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.label}
-                </a>
-              ))}
+        <div
+          id={mobileMenuId}
+          className={`md:hidden mt-4 pb-4 border-t ${colors.borderNav} ${isOpen ? 'block' : 'hidden'}`}
+        >
+          <div className="flex flex-col space-y-3 pt-4">
+            {navLinks.map((link) => (
               <a
-                href="/cv.pdf"
-                className={`flex items-center space-x-1 ${colors.textNavLink} hover:text-pink-400 ${transitions.colors} px-2 py-1 hover:drop-shadow-[0_0_8px_rgba(236,72,153,0.8)]`}
+                key={link.href}
+                href={link.href}
+                className={`${classes.navLink} px-2 py-1`}
                 onClick={() => setIsOpen(false)}
               >
-                <FileText className="w-4 h-4" />
-                <span>CV</span>
+                {link.label}
               </a>
-            </div>
+            ))}
+            <a
+              href="/cv.pdf"
+              className={`flex items-center space-x-1 ${colors.textNavLink} hover:text-pink-400 ${transitions.colors} px-2 py-1 hover:drop-shadow-[0_0_8px_rgba(236,72,153,0.8)]`}
+              onClick={() => setIsOpen(false)}
+            >
+              <FileText className="w-4 h-4" />
+              <span>CV</span>
+            </a>
           </div>
-        )}
+        </div>
       </div>
     </header>
   );

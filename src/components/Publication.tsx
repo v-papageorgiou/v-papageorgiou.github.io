@@ -1,68 +1,156 @@
+import { ChevronDown, ChevronUp, ExternalLink, FileText, Github, Globe } from 'lucide-react';
+import { colors, classes, effects, transitions } from '@/styles/theme';
+
+interface PublicationLinkSet {
+  paper?: string;
+  code?: string;
+  website?: string;
+}
+
+interface PublicationAuthor {
+  name: string;
+  link?: string;
+}
+
 interface PublicationProps {
   title: string;
-  authors: string[];
+  authors: PublicationAuthor[];
   venue: string;
   year: string;
   abstract: string;
-  links: {
-    paper?: string;
-    code?: string;
-    website?: string;
-  };
+  links: PublicationLinkSet;
+  tags?: string[];
+  isExpanded: boolean;
+  onToggle: () => void;
+  abstractId: string;
 }
 
-export default function Publication({ 
-  title, 
-  authors, 
-  venue, 
-  year, 
-  abstract, 
-  links 
+export default function Publication({
+  title,
+  authors,
+  venue,
+  year,
+  abstract,
+  links,
+  tags = [],
+  isExpanded,
+  onToggle,
+  abstractId,
 }: PublicationProps) {
   return (
-    <div className="bg-white rounded-xl p-6 border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all duration-200">
-      <h3 className="text-xl font-semibold text-gray-900 mb-2">{title}</h3>
-      <p className="text-gray-600 mb-2">
-        {authors.map((author, i) => (
-          <span key={i} className={author === "Vasilis Papageorgiou" ? "font-medium" : ""}>
-            {author}{i < authors.length - 1 ? ", " : ""}
-          </span>
-        ))}
+    <article className={classes.card}>
+      <header className="mb-3">
+        <h3 className={`text-xl font-semibold ${colors.cyanDark} mb-1`}>{title}</h3>
+        <p className={`${colors.orange} font-medium text-sm`}>{venue} ({year})</p>
+      </header>
+
+      <p className={`${colors.textSecondary} mb-3 text-sm`}>
+        {authors.map((author, index) => {
+          const separator = index < authors.length - 1 ? ', ' : '';
+          const highlight = author.name === 'Vasilis Papageorgiou'
+            ? `font-bold underline ${colors.orange}`
+            : '';
+
+          if (author.link) {
+            return (
+              <span key={author.name} className={highlight}>
+                <a
+                  href={author.link}
+                  className={`${colors.cyan} ${colors.textLinkHover} hover:underline ${transitions.colors} ${effects.glowCyan}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {author.name}
+                </a>
+                {separator}
+              </span>
+            );
+          }
+
+          return (
+            <span key={author.name} className={highlight}>
+              {author.name}
+              {separator}
+            </span>
+          );
+        })}
       </p>
-      <p className="text-blue-600 font-medium mb-3">{venue} ({year})</p>
-      <p className="text-gray-700 text-sm mb-4">{abstract}</p>
-      <div className="flex space-x-4">
+
+      {tags.length > 0 && (
+        <ul className="mb-3 flex flex-wrap gap-2 text-[11px] uppercase tracking-wide">
+          {tags.map((tag) => (
+            <li
+              key={tag}
+              className={`rounded-full border ${colors.borderSocial} px-3 py-1 ${colors.textFooterSecondary}`}
+            >
+              {tag}
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-expanded={isExpanded}
+        aria-controls={abstractId}
+        className={`flex items-center space-x-1 ${colors.cyanLight} ${colors.textLinkHover} ${transitions.colors} mb-2 ${effects.glowCyan}`}
+      >
+        {isExpanded ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
+        <span className="text-xs font-medium">
+          {isExpanded ? 'Hide Abstract' : 'Show Abstract'}
+        </span>
+      </button>
+
+      <section
+        id={abstractId}
+        aria-label={`Abstract for ${title}`}
+        hidden={!isExpanded}
+        className={`mb-3 rounded-lg border-l-4 ${colors.borderAbstract} ${colors.bgAbstract} p-3`}
+      >
+        <p className={`${colors.textBody} text-xs leading-relaxed`}>{abstract}</p>
+      </section>
+
+      <div className="flex flex-wrap gap-3 text-xs">
         {links.paper && (
-          <a 
-            href={links.paper} 
-            className="flex items-center space-x-1 text-blue-600 hover:text-blue-800 text-sm"
+          <a
+            href={links.paper}
             target="_blank"
             rel="noopener noreferrer"
+            className={`flex items-center space-x-1 ${colors.cyan} ${colors.textLinkHover} ${transitions.colors} ${effects.glowCyan}`}
           >
+            <FileText className="w-3 h-3" />
             <span>Paper</span>
+            <ExternalLink className="w-2 h-2" />
           </a>
         )}
+
         {links.code && (
-          <a 
-            href={links.code} 
-            className="flex items-center space-x-1 text-blue-600 hover:text-blue-800 text-sm"
+          <a
+            href={links.code}
             target="_blank"
             rel="noopener noreferrer"
+            className={`flex items-center space-x-1 ${colors.cyan} ${colors.textLinkHover} ${transitions.colors} ${effects.glowCyan}`}
           >
+            <Github className="w-3 h-3" />
             <span>Code</span>
+            <ExternalLink className="w-2 h-2" />
           </a>
         )}
+
         {links.website && (
-          <a 
-            href={links.website} 
-            className="flex items-center space-x-1 text-blue-600 hover:text-blue-800 text-sm"
+          <a
+            href={links.website}
             target="_blank"
             rel="noopener noreferrer"
+            className={`flex items-center space-x-1 ${colors.cyan} ${colors.textLinkHover} ${transitions.colors} ${effects.glowCyan}`}
           >
-            <span>Website</span>
+            <Globe className="w-3 h-3" />
+            <span>Project</span>
+            <ExternalLink className="w-2 h-2" />
           </a>
         )}
       </div>
-    </div>
+    </article>
   );
 }
