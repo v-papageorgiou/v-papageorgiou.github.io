@@ -1,8 +1,8 @@
 export const news = [
   {
-    date: "2025-05-17",
+    date: "2025-05-27",
     title: "Started internship at AWS AI Labs",
-    description: "Joined AWS AI Labs in Pasadena, CA as an Applied Science Research Intern",
+    description: "Joined AWS AI Labs in Pasadena, CA as an Applied Scientist Research Intern",
     category: "",
     highlight: false
   }
