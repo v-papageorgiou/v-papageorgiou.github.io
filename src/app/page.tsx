@@ -14,23 +14,10 @@ import {
 } from "lucide-react";
 import Publication from "@/components/Publication";
 import { publications, formatAuthors } from "@/data/publications";
-import { news } from "@/data/news";
+import { experience } from "@/data/experience";
 import { socialLinks as importedSocialLinks } from "@/data/personal";
 import { getColleagueLink } from "@/data/colleagues";
 import { colors, effects, transitions, classes } from "@/styles/theme";
-
-const formatNewsDate = (isoDate: string) => {
-  const parsed = new Date(isoDate);
-  if (Number.isNaN(parsed.getTime())) {
-    return isoDate;
-  }
-
-  return parsed.toLocaleDateString(undefined, {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
-};
 
 // Custom X.com icon component
 const XIcon = ({ className }: { className?: string }) => (
@@ -104,9 +91,6 @@ export default function Home() {
                   Previously, I earned my diploma in Electrical and Computer Engineering from the Technical University of Crete, 
                   Greece, where I worked with <a href={getColleagueLink("Aggelos Bletsas")} className={`${colors.cyanLight} ${colors.textLinkHover} ${transitions.colors} ${effects.glowCyan}`}>Prof. Aggelos Bletsas</a>  on asynchronous algorithms for distributed inference in wireless sensor networks.
                 </p>
-                <p className="mb-0">
-                  Currently, I am also a research intern at AWS AI Labs in Pasadena, CA, where I am working on reasoning models.
-                </p>
               </div>
             </div>
 
@@ -160,35 +144,36 @@ export default function Home() {
           </div>
         </section>
 
-        {/* News */}
-        <section id="news" className="mb-10">
-          <h2 className={`text-2xl font-bold ${colors.orange} mb-5 ${effects.dropShadow}`}>News</h2>
-          
+        {/* Experience */}
+        <section id="experience" className="mb-10">
+          <h2 className={`text-2xl font-bold ${colors.orange} mb-5 ${effects.dropShadow}`}>Experience</h2>
+
           <div className="space-y-3">
-            {news.map((item, index) => (
-              <div key={index} className={classes.card}>
-                <div className="flex items-start space-x-3">
+            {experience.map((item, index) => (
+              <div key={`${item.organization}-${index}`} className={classes.card}>
+                <div className="flex flex-col sm:flex-row sm:items-start sm:space-x-3 gap-2">
                   <time
-                    dateTime={item.date}
                     className={`${colors.cyan} font-medium text-sm min-w-fit`}
                   >
-                    {formatNewsDate(item.date)}
+                    {item.dateRange}
                   </time>
                   <div className="flex-1">
                     <div className="flex flex-wrap items-center gap-2">
-                      <h3 className={`font-semibold ${colors.cyanDark} text-base`}>{item.title}</h3>
-                      {item.category && (
-                        <span className={`text-[11px] uppercase tracking-wide px-2 py-0.5 rounded-full border ${colors.borderSocial} ${colors.textFooterSecondary}`}>
-                          {item.category}
-                        </span>
-                      )}
-                      {item.highlight && (
-                        <span className={`text-[11px] uppercase tracking-wide px-2 py-0.5 rounded-full bg-cyan-500/20 border border-cyan-400/40 text-cyan-200`}>
-                          Highlight
-                        </span>
-                      )}
+                      <h3 className={`font-semibold ${colors.cyanDark} text-base`}>
+                        {item.role}
+                      </h3>
+                      <span className={`text-[11px] uppercase tracking-wide px-2 py-0.5 rounded-full border ${colors.borderSocial} ${colors.textFooterSecondary}`}>
+                        {item.organization}
+                      </span>
                     </div>
-                    <p className={`${colors.textBody} text-sm mt-1`}>{item.description}</p>
+                    {item.location && (
+                      <p className={`${colors.textBody} text-xs mt-1`}>
+                        {item.location}
+                      </p>
+                    )}
+                    <p className={`${colors.textBody} text-sm mt-1`}>
+                      {item.description}
+                    </p>
                   </div>
                 </div>
               </div>

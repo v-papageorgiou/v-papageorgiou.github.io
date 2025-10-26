@@ -9,8 +9,8 @@ export default function Navigation() {
 
   const navLinks = [
     { href: '#about', label: 'About' },
+    { href: '#experience', label: 'Experience' },
     { href: '#publications', label: 'Publications' },
-    { href: '#news', label: 'News' },
   ];
 
   const mobileMenuId = 'primary-navigation';
