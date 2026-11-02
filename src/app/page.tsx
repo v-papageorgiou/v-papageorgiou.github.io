@@ -67,29 +67,29 @@ export default function Home() {
         <section id="about" className="mb-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 lg:gap-12 items-start">
             <div className="md:col-span-2">
-              <h1 className={`text-3xl font-bold ${colors.cyanLight} mb-3 ${effects.dropShadow}`}>
+              <h1 className={`text-4xl font-medium tracking-tight ${colors.textHeading} mb-3`}>
                 Vasilis Papageorgiou
               </h1>
-              <div className={`flex items-center space-x-3 ${colors.cyanLight} mb-4 text-sm`}>
+              <div className={`flex items-center space-x-3 ${colors.textLink} mb-4 text-sm`}>
                 <div className="flex items-center space-x-1">
-                  <GraduationCap className={`w-4 h-4 ${colors.cyan}`} />
+                  <GraduationCap className={`w-4 h-4 ${colors.textLink}`} />
                   <span>PhD Student in Computer Science</span>
                 </div>
                 <div className="flex items-center space-x-1">
-                  <MapPin className={`w-4 h-4 ${colors.cyan}`} />
+                  <MapPin className={`w-4 h-4 ${colors.textLink}`} />
                   <span>UW-Madison</span>
                 </div>
               </div>
 
-              <div className={`prose prose-base ${colors.textBody} text-base leading-relaxed`}>
+              <div className={`font-serif ${colors.textBody} text-xl leading-relaxed`}>
                 <p className="mb-3">
                   Hello! I am a 5th year PhD student in Computer Sciences at the University of Wisconsin-Madison,
-                  advised by <a href={getColleagueLink("Dimitris Papailiopoulos")} className={`${colors.cyanLight} ${colors.textLinkHover} ${transitions.colors} ${effects.glowCyan}`}>Dimitris Papailiopoulos</a>. 
+                  advised by <a href={getColleagueLink("Dimitris Papailiopoulos")} className={`${colors.textLink} ${colors.textLinkHover} ${transitions.colors}`}>Dimitris Papailiopoulos</a>.
                   My research interests revolve around LLMs, Reasoning, Machine Learning, and Deep Learning.
                 </p>
                 <p className="mb-3">
                   Previously, I earned my diploma in Electrical and Computer Engineering from the Technical University of Crete, 
-                  Greece, where I worked with <a href={getColleagueLink("Aggelos Bletsas")} className={`${colors.cyanLight} ${colors.textLinkHover} ${transitions.colors} ${effects.glowCyan}`}>Prof. Aggelos Bletsas</a>  on asynchronous algorithms for distributed inference in wireless sensor networks.
+                  Greece, where I worked with <a href={getColleagueLink("Aggelos Bletsas")} className={`${colors.textLink} ${colors.textLinkHover} ${transitions.colors}`}>Prof. Aggelos Bletsas</a>  on asynchronous algorithms for distributed inference in wireless sensor networks.
                 </p>
               </div>
             </div>
@@ -97,7 +97,7 @@ export default function Home() {
             {/* Profile Image and Social Links */}
             <div className="flex flex-col items-center">
               <div className="relative mb-4">
-                <div className={`w-52 h-52 rounded-2xl overflow-hidden border-4 ${colors.borderProfile} ${effects.shadowLg} ${colors.bgProfileImage} ${effects.shadowCyan} ${effects.profileGlow}`}>
+                <div className={`w-52 h-52 rounded-2xl overflow-hidden border-4 ${colors.borderProfile} ${effects.profileShadow} ${colors.bgProfileImage}`}>
                   <Image
                     src="/profile.jpg"
                     alt="Vasilis Papageorgiou"
@@ -146,20 +146,20 @@ export default function Home() {
 
         {/* Experience */}
         <section id="experience" className="mb-10">
-          <h2 className={`text-2xl font-bold ${colors.orange} mb-5 ${effects.dropShadow}`}>Experience</h2>
+          <h2 className={`text-3xl font-medium ${colors.textHeading} mb-5`}>Experience</h2>
 
           <div className="space-y-3">
             {experience.map((item, index) => (
               <div key={`${item.organization}-${index}`} className={classes.card}>
                 <div className="flex flex-col sm:flex-row sm:items-start sm:space-x-3 gap-2">
                   <time
-                    className={`${colors.cyan} font-medium text-sm min-w-fit`}
+                    className={`${colors.textLink} font-medium text-sm min-w-fit`}
                   >
                     {item.dateRange}
                   </time>
                   <div className="flex-1">
                     <div className="flex flex-wrap items-center gap-2">
-                      <h3 className={`font-semibold ${colors.cyanDark} text-base`}>
+                      <h3 className={`font-semibold ${colors.textHeading} text-base`}>
                         {item.role}
                       </h3>
                       <span className={`text-[11px] uppercase tracking-wide px-2 py-0.5 rounded-full border ${colors.borderSocial} ${colors.textFooterSecondary}`}>
@@ -184,8 +184,8 @@ export default function Home() {
         {/* Publications */}
         <section id="publications" className="mb-10">
           <div className="flex items-center space-x-2 mb-5">
-            <Award className={`w-5 h-5 ${colors.cyan} ${effects.iconGlow}`} />
-            <h2 className={`text-2xl font-bold ${colors.orange} ${effects.dropShadow}`}>Publications</h2>
+            <Award className={`w-5 h-5 ${colors.textLink}`} />
+            <h2 className={`text-3xl font-medium ${colors.textHeading}`}>Publications</h2>
           </div>
           
           <div className="space-y-4">
@@ -214,7 +214,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className={`bg-black border-t ${colors.borderNav} text-white py-12`}>
+      <footer className={`${colors.bgFooter} border-t ${colors.borderNav} py-12`}>
         <div className="max-w-4xl mx-auto px-6 text-center">
           <p className={`${colors.textFooterPrimary} mb-4`}>
             © 2025 Vasilis Papageorgiou. All rights reserved.

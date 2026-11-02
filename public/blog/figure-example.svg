@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="240" viewBox="0 0 640 240" role="img" aria-labelledby="title description">
+  <title id="title">A simple reasoning pipeline</title>
+  <desc id="description">Three labeled boxes connected left to right: Input, Reasoning, and Answer.</desc>
+  <rect width="640" height="240" rx="8" fill="#f8f6f0"/>
+  <g fill="#fffdf8" stroke="#b8af9f" stroke-width="1.5">
+    <rect x="24" y="72" width="168" height="96" rx="8"/>
+    <rect x="236" y="72" width="168" height="96" rx="8"/>
+    <rect x="448" y="72" width="168" height="96" rx="8"/>
+  </g>
+  <g fill="none" stroke="#425e55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M202 120h24m-7-6 7 6-7 6"/>
+    <path d="M414 120h24m-7-6 7 6-7 6"/>
+  </g>
+  <g fill="#302e2a" font-family="Georgia, serif" font-size="26" text-anchor="middle">
+    <text x="108" y="129">Input</text>
+    <text x="320" y="129">Reasoning</text>
+    <text x="532" y="129">Answer</text>
+  </g>
+</svg>

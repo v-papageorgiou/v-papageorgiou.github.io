@@ -1,0 +1,2 @@
+# PDFs contain byte offsets and must not undergo text normalization.
+*.pdf binary

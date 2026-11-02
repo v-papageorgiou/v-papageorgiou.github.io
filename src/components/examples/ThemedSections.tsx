@@ -17,11 +17,11 @@ const NewsSection = ({ news }: { news: Array<{ date: string; title: string; desc
       {news.map((item, index) => (
         <ThemedCard key={index}>
           <div className="flex items-start space-x-3">
-            <div className={`${colors.cyan} font-medium text-sm min-w-fit`}>
+            <div className={`${colors.textLink} font-medium text-sm min-w-fit`}>
               {item.date}
             </div>
             <div>
-              <h3 className={`font-semibold ${colors.cyanDark} mb-1 text-base`}>
+              <h3 className={`font-semibold ${colors.textHeading} mb-1 text-base`}>
                 {item.title}
               </h3>
               <p className={`${colors.textBody} text-sm`}>

@@ -1,5 +1,5 @@
 import { ChevronDown, ChevronUp, ExternalLink, FileText, Github, Globe } from 'lucide-react';
-import { colors, classes, effects, transitions } from '@/styles/theme';
+import { colors, classes, transitions } from '@/styles/theme';
 
 interface PublicationLinkSet {
   paper?: string;
@@ -40,15 +40,15 @@ export default function Publication({
   return (
     <article className={classes.card}>
       <header className="mb-3">
-        <h3 className={`text-xl font-semibold ${colors.cyanDark} mb-1`}>{title}</h3>
-        <p className={`${colors.orange} font-medium text-sm`}>{venue} ({year})</p>
+        <h3 className={`text-2xl font-medium leading-tight ${colors.textHeading} mb-1`}>{title}</h3>
+        <p className={`${colors.textAccent} font-medium text-sm`}>{venue} ({year})</p>
       </header>
 
       <p className={`${colors.textSecondary} mb-3 text-sm`}>
         {authors.map((author, index) => {
           const separator = index < authors.length - 1 ? ', ' : '';
           const highlight = author.name === 'Vasilis Papageorgiou'
-            ? `font-bold underline ${colors.orange}`
+            ? `font-bold underline ${colors.textAccent}`
             : '';
 
           if (author.link) {
@@ -56,7 +56,7 @@ export default function Publication({
               <span key={author.name} className={highlight}>
                 <a
                   href={author.link}
-                  className={`${colors.cyan} ${colors.textLinkHover} hover:underline ${transitions.colors} ${effects.glowCyan}`}
+                  className={`${colors.textLink} ${colors.textLinkHover} hover:underline ${transitions.colors}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -94,7 +94,7 @@ export default function Publication({
         onClick={onToggle}
         aria-expanded={isExpanded}
         aria-controls={abstractId}
-        className={`flex items-center space-x-1 ${colors.cyanLight} ${colors.textLinkHover} ${transitions.colors} mb-2 ${effects.glowCyan}`}
+        className={`flex items-center space-x-1 ${colors.textLink} ${colors.textLinkHover} ${transitions.colors} mb-2`}
       >
         {isExpanded ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
         <span className="text-xs font-medium">
@@ -108,7 +108,7 @@ export default function Publication({
         hidden={!isExpanded}
         className={`mb-3 rounded-lg border-l-4 ${colors.borderAbstract} ${colors.bgAbstract} p-3`}
       >
-        <p className={`${colors.textBody} text-xs leading-relaxed`}>{abstract}</p>
+        <p className={`${colors.textBody} font-serif text-base leading-relaxed`}>{abstract}</p>
       </section>
 
       <div className="flex flex-wrap gap-3 text-xs">
@@ -117,7 +117,7 @@ export default function Publication({
             href={links.paper}
             target="_blank"
             rel="noopener noreferrer"
-            className={`flex items-center space-x-1 ${colors.cyan} ${colors.textLinkHover} ${transitions.colors} ${effects.glowCyan}`}
+            className={`flex items-center space-x-1 ${colors.textLink} ${colors.textLinkHover} ${transitions.colors}`}
           >
             <FileText className="w-3 h-3" />
             <span>Paper</span>
@@ -130,7 +130,7 @@ export default function Publication({
             href={links.code}
             target="_blank"
             rel="noopener noreferrer"
-            className={`flex items-center space-x-1 ${colors.cyan} ${colors.textLinkHover} ${transitions.colors} ${effects.glowCyan}`}
+            className={`flex items-center space-x-1 ${colors.textLink} ${colors.textLinkHover} ${transitions.colors}`}
           >
             <Github className="w-3 h-3" />
             <span>Code</span>
@@ -143,7 +143,7 @@ export default function Publication({
             href={links.website}
             target="_blank"
             rel="noopener noreferrer"
-            className={`flex items-center space-x-1 ${colors.cyan} ${colors.textLinkHover} ${transitions.colors} ${effects.glowCyan}`}
+            className={`flex items-center space-x-1 ${colors.textLink} ${colors.textLinkHover} ${transitions.colors}`}
           >
             <Globe className="w-3 h-3" />
             <span>Project</span>

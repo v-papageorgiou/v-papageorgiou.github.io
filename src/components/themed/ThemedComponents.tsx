@@ -1,5 +1,5 @@
 import React from 'react';
-import { colors, effects, classes } from '@/styles/theme';
+import { colors, classes } from '@/styles/theme';
 
 interface HeadingProps {
   children: React.ReactNode;
@@ -8,7 +8,7 @@ interface HeadingProps {
 }
 
 export const ThemedHeading = ({ children, level = 2, className = '' }: HeadingProps) => {
-  const baseClasses = `font-bold ${colors.orange} ${effects.dropShadow}`;
+  const baseClasses = `font-bold ${colors.textHeading}`;
   const sizeClasses = {
     1: 'text-3xl mb-3',
     2: 'text-2xl mb-5', 

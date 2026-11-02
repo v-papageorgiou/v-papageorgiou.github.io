@@ -1,12 +1,27 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
+import { JetBrains_Mono, Manrope, Newsreader } from "next/font/google";
 import "./globals.css";
 import { personSchema } from "../lib/schema";
+import { themeInitializationScript } from "@/lib/appearance";
 
 const manrope = Manrope({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-primary",
+});
+
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-reading",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  display: "swap",
+  variable: "--font-code",
 });
 
 export const metadata: Metadata = {
@@ -62,8 +77,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="light" suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitializationScript }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -71,10 +87,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${manrope.className} ${manrope.variable} antialiased`}>
+      <body className={`${manrope.variable} ${newsreader.variable} ${jetbrainsMono.variable} antialiased`}>
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 bg-black text-white px-4 py-2 rounded"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 bg-foreground text-background px-4 py-2 rounded"
         >
           Skip to main content
         </a>

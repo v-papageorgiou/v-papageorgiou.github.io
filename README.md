@@ -48,6 +48,12 @@ npm run dev
 
 ## Customization
 
+### Write a blog post
+
+Add a `.md` file to `content/blog/`. The blog supports inline and display math,
+tables, code blocks, and footnotes. See [BLOGGING.md](BLOGGING.md) for metadata,
+LaTeX-style syntax, local draft previews, and publication instructions.
+
 ### Update Personal Information
 
 1. **Profile Information**: Edit the personal details in `src/app/page.tsx`

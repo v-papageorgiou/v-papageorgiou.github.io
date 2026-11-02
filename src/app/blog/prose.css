@@ -1,0 +1,127 @@
+.blog-prose {
+  color: var(--ink-soft);
+  font-family: var(--font-reading), Georgia, serif;
+  font-size: 1.25rem;
+  font-optical-sizing: auto;
+  line-height: 1.75;
+  overflow-wrap: break-word;
+}
+
+.blog-prose > :first-child { margin-top: 0; }
+.blog-prose p { margin: 1.25em 0; }
+.blog-prose :is(h1, h2, h3, h4) {
+  color: var(--foreground);
+  font-weight: 500;
+  line-height: 1.25;
+  margin: 1.8em 0 0.65em;
+  scroll-margin-top: 6rem;
+  text-wrap: balance;
+}
+.blog-prose h1 { font-size: 2em; }
+.blog-prose h2 { font-size: 1.55em; }
+.blog-prose h3 { font-size: 1.25em; }
+.blog-prose h4 { font-size: 1.1em; }
+.blog-prose a {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+.blog-prose a:hover { color: var(--link-hover); }
+.blog-prose strong { color: var(--foreground); font-weight: 600; }
+.blog-prose :is(ul, ol) { margin: 1.25em 0; padding-left: 1.5em; }
+.blog-prose ul { list-style-type: disc; }
+.blog-prose ol { list-style-type: decimal; }
+.blog-prose li { padding-left: 0.2em; margin: 0.4em 0; }
+.blog-prose li :is(ul, ol) { margin: 0.4em 0; }
+.blog-prose blockquote {
+  margin: 1.5em 0;
+  padding-left: 1em;
+  border-left: 3px solid var(--paper-line-strong);
+  color: var(--ink-muted);
+  font-style: italic;
+}
+.blog-prose code {
+  background: var(--paper-inset);
+  color: var(--foreground);
+  border-radius: 0.2rem;
+  padding: 0.15em 0.3em;
+  font-family: var(--font-code), monospace;
+  font-size: 0.75em;
+}
+.blog-prose pre {
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 1.5em 0;
+  padding: 1.1rem 1.25rem;
+  border: 1px solid var(--paper-line);
+  border-radius: 0.4rem;
+  background: var(--paper-inset);
+  font-family: var(--font-code), monospace;
+  font-size: 0.85rem;
+  line-height: 1.8;
+}
+.blog-prose pre code { padding: 0; background: none; font-size: inherit; }
+.blog-prose .katex { font-size: 1.05em; }
+.blog-prose .katex-display {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.75em 0.15em;
+  margin: 1.4em 0;
+  color: var(--foreground);
+}
+.blog-prose .katex-error { color: var(--foreground); }
+.blog-prose .blog-table { max-width: 100%; overflow-x: auto; margin: 1.5em 0; }
+.blog-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-primary), sans-serif;
+  font-size: 0.8em;
+  line-height: 1.6;
+}
+.blog-prose :is(th, td) { padding: 0.65em 0.8em; border-bottom: 1px solid var(--paper-line); text-align: left; }
+.blog-prose th { color: var(--foreground); font-weight: 600; }
+.blog-prose img { display: block; max-width: 100%; height: auto; margin: 1.5em auto; border-radius: 0.25rem; }
+.blog-prose .blog-figure { margin: 2em 0; }
+.blog-prose .blog-figure img { margin: 0 auto; border: 1px solid var(--paper-line); }
+.blog-prose .pdf-figure { display: block; width: 100%; }
+.blog-prose .pdf-figure canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--paper-line);
+  border-radius: 0.25rem;
+}
+.blog-prose .pdf-figure canvas[hidden] { display: none; }
+.blog-prose .pdf-figure-status {
+  display: grid;
+  place-content: center;
+  min-height: 12rem;
+  padding: 1.5rem;
+  border: 1px solid var(--paper-line);
+  border-radius: 0.25rem;
+  background: var(--paper-inset);
+  color: var(--ink-muted);
+  font-family: var(--font-primary), sans-serif;
+  font-size: 0.75em;
+  text-align: center;
+}
+.blog-prose figcaption {
+  max-width: 100%;
+  margin-top: 0.85em;
+  color: var(--ink-muted);
+  font-family: var(--font-primary), sans-serif;
+  font-size: 0.75em;
+  line-height: 1.6;
+  text-align: center;
+}
+.blog-prose hr { margin: 2em 0; border: 0; border-top: 1px solid var(--paper-line); }
+.blog-prose .contains-task-list { padding-left: 0; list-style: none; }
+.blog-prose .task-list-item input { margin-right: 0.6em; accent-color: var(--link); }
+.blog-prose .footnotes { margin-top: 3em; border-top: 1px solid var(--paper-line); font-size: 0.85em; }
+.blog-prose .footnotes h2 { font-size: 1.25em; }
+
+@media (min-width: 640px) {
+  .blog-prose { font-size: 1.375rem; }
+}
