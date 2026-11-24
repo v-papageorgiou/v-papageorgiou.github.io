@@ -108,7 +108,7 @@ export default function Publication({
         hidden={!isExpanded}
         className={`mb-3 rounded-lg border-l-4 ${colors.borderAbstract} ${colors.bgAbstract} p-3`}
       >
-        <p className={`${colors.textBody} font-serif text-base leading-relaxed`}>{abstract}</p>
+        <p className={colors.textBody}>{abstract}</p>
       </section>
 
       <div className="flex flex-wrap gap-3 text-xs">

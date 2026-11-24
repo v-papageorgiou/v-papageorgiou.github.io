@@ -1,13 +1,15 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { formatPostDate, getPosts } from '@/lib/posts';
-import { colors, classes } from '@/styles/theme';
+import PreviewImage from '@/components/PreviewImage';
+import { formatPostAuthors, formatPostDate, getPosts } from '@/lib/posts';
+import { colors } from '@/styles/theme';
 
 export const metadata: Metadata = {
-  title: 'Blog',
-  description: 'Notes on machine learning, language models, and reasoning by Vasilis Papageorgiou.',
+  title: { absolute: 'Blogposts' },
+  description: null,
   alternates: { canonical: '/blog/' },
-  openGraph: { title: 'Blog | Vasilis Papageorgiou', description: 'Notes on machine learning, language models, and reasoning.', url: '/blog/' },
+  openGraph: { title: 'Blogposts', url: '/blog/' },
+  twitter: { card: 'summary', title: 'Blogposts' },
 };
 
 export default function BlogPage() {
@@ -16,17 +18,12 @@ export default function BlogPage() {
   return (
     <div className="mx-auto max-w-2xl">
       <header className="mb-12">
-        <p className={`mb-4 font-mono text-xs uppercase tracking-widest ${colors.textFooterSecondary}`}>Notes &amp; ideas</p>
-        <h1 className={`mb-4 text-5xl font-medium tracking-tight sm:text-6xl ${colors.textHeading}`}>Writing</h1>
-        <p className={`font-serif text-xl leading-relaxed ${colors.textBody}`}>
-          On machine learning, language models, and the questions behind them.
-        </p>
+        <h1 className={`text-5xl font-medium tracking-tight sm:text-6xl ${colors.textHeading}`}>Blogposts</h1>
       </header>
 
       {posts.length === 0 ? (
         <div className={`border-t ${colors.borderNav} py-10`}>
-          <p className={`font-serif text-2xl ${colors.textHeading}`}>The first post is on its way.</p>
-          <p className={`mt-3 text-sm ${colors.textBody}`}>In the meantime, explore my <Link href="/#publications" className={`${classes.link} underline underline-offset-4`}>research publications</Link>.</p>
+          <p className={`font-sans text-2xl ${colors.textHeading}`}>The first post is on its way.</p>
         </div>
       ) : (
         <div className={`divide-y divide-paper-line border-t ${colors.borderNav}`}>
@@ -40,7 +37,23 @@ export default function BlogPage() {
               <h2 className="mb-3 text-3xl font-medium leading-tight">
                 <Link href={`/blog/${post.slug}/`} className={`${colors.textHeading} ${colors.textLinkHover} transition-colors`}>{post.title}</Link>
               </h2>
-              <p className={`font-serif text-xl leading-relaxed ${colors.textBody}`}>{post.description}</p>
+              <p className={`text-sm ${colors.textBody}`}>By {formatPostAuthors(post.authors)}</p>
+              {post.paperPdf && (
+                <a
+                  href={`/blog/${post.slug}/${encodeURIComponent(post.paperPdf)}`}
+                  className="mt-1 inline-block text-sm text-link underline underline-offset-2 hover:text-link-hover"
+                >
+                  PDF version<span className="sr-only"> of {post.title}</span>
+                </a>
+              )}
+              {post.indexFigure && (
+                <div className="mt-5 max-w-md overflow-hidden rounded border border-paper-line [&>img]:block [&>img]:h-auto [&>img]:w-full">
+                  {process.env.NODE_ENV === 'development'
+                    ? <PreviewImage {...post.indexFigure} />
+                    // eslint-disable-next-line @next/next/no-img-element
+                    : <img src={post.indexFigure.src} alt={post.indexFigure.alt} loading="lazy" decoding="async" />}
+                </div>
+              )}
             </article>
           ))}
         </div>

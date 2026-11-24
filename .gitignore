@@ -17,6 +17,7 @@
 /.next/
 /out/
 /public/_pdfjs/
+/public/blog/
 
 # production
 /build

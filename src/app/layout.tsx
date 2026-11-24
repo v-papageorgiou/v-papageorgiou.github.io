@@ -1,20 +1,15 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Manrope, Newsreader } from "next/font/google";
+import { JetBrains_Mono, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import { personSchema } from "../lib/schema";
 import { themeInitializationScript } from "@/lib/appearance";
 
-const manrope = Manrope({
+const sourceSans = Source_Sans_3({
   subsets: ["latin"],
-  display: "swap",
-  variable: "--font-primary",
-});
-
-const newsreader = Newsreader({
-  subsets: ["latin"],
+  weight: "variable",
   style: ["normal", "italic"],
   display: "swap",
-  variable: "--font-reading",
+  variable: "--font-primary",
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -87,7 +82,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${manrope.variable} ${newsreader.variable} ${jetbrainsMono.variable} antialiased`}>
+      <body className={`${sourceSans.variable} ${jetbrainsMono.variable} antialiased`}>
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 bg-foreground text-background px-4 py-2 rounded"

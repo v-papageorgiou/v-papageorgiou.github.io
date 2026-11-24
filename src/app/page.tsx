@@ -62,7 +62,7 @@ export default function Home() {
       {/* Header */}
       <Navigation />
 
-      <main id="main-content" className="max-w-4xl mx-auto px-4 py-8">
+      <main id="main-content" className="home-main max-w-4xl mx-auto px-4 py-8">
         {/* Hero Section */}
         <section id="about" className="mb-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 lg:gap-12 items-start">
@@ -81,7 +81,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className={`font-serif ${colors.textBody} text-xl leading-relaxed`}>
+              <div className={colors.textBody}>
                 <p className="mb-3">
                   Hello! I am a 5th year PhD student in Computer Sciences at the University of Wisconsin-Madison,
                   advised by <a href={getColleagueLink("Dimitris Papailiopoulos")} className={`${colors.textLink} ${colors.textLinkHover} ${transitions.colors}`}>Dimitris Papailiopoulos</a>.
@@ -137,7 +137,7 @@ export default function Home() {
                   rel="noopener noreferrer"
                 >
                   <FileText className="w-4 h-4" />
-                  <span className="text-sm font-medium">CV</span>
+                  <span className="text-sm">CV</span>
                 </a>
               </div>
             </div>
@@ -171,7 +171,7 @@ export default function Home() {
                         {item.location}
                       </p>
                     )}
-                    <p className={`${colors.textBody} text-sm mt-1`}>
+                    <p className={`${colors.textBody} mt-1`}>
                       {item.description}
                     </p>
                   </div>

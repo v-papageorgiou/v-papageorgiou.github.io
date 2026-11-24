@@ -4,21 +4,21 @@ export const colors = {
   textAccent: 'text-accent',
   textLink: 'text-link',
 
-  // Warm paper surfaces
+  // Paper surfaces
   bgMain: 'bg-background paper-texture',
   bgCard: 'bg-paper-surface/60',
   bgNav: 'bg-background paper-texture',
   bgFooter: 'bg-background/65',
   bgProfileImage: 'bg-paper-inset',
-  bgAbstract: 'bg-paper-inset/70',
-  bgSocialIcon: 'bg-paper-surface/80',
+  bgAbstract: 'bg-accent-surface/70',
+  bgSocialIcon: 'bg-accent-surface/80',
 
-  // Subtle, warm borders
+  // Subtle borders
   borderNav: 'border-paper-line',
   borderCard: 'border-paper-line',
   borderCardHover: 'hover:border-paper-line-strong',
-  borderProfile: 'border-paper-surface',
-  borderSocial: 'border-paper-line',
+  borderProfile: 'border-accent-line',
+  borderSocial: 'border-accent-line',
   borderSocialHover: 'hover:border-paper-line-strong',
   borderAbstract: 'border-paper-line-strong',
 

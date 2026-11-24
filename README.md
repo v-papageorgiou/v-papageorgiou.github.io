@@ -23,7 +23,7 @@ A modern, responsive academic personal website built with Next.js, TypeScript, a
 
 ### Prerequisites
 
-- Node.js 18.0 or later
+- Node.js 24 (matching the deployment workflow)
 - npm or yarn
 
 ### Installation
@@ -50,8 +50,9 @@ npm run dev
 
 ### Write a blog post
 
-Add a `.md` file to `content/blog/`. The blog supports inline and display math,
-tables, code blocks, and footnotes. See [BLOGGING.md](BLOGGING.md) for metadata,
+Create `content/blog/my-post/index.md` and keep figures beside it, for example
+in `content/blog/my-post/figs/`. The blog supports inline and display math,
+tables, code blocks, and references. See [BLOGGING.md](BLOGGING.md) for metadata,
 LaTeX-style syntax, local draft previews, and publication instructions.
 
 ### Update Personal Information

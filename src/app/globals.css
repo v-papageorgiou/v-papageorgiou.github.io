@@ -2,20 +2,22 @@
 
 :root {
   color-scheme: light;
-  --background: #f8f6f0;
-  --foreground: #302e2a;
-  --ink-soft: #514d46;
-  --ink-muted: #6c665c;
-  --accent: #71604c;
-  --link: #425e55;
-  --link-hover: #263e35;
-  --paper-surface: #fffdf8;
-  --paper-inset: #f0ece3;
-  --paper-hover: #eee9de;
-  --paper-line: #d9d3c7;
-  --paper-line-strong: #b8af9f;
+  --background: #fcfcfc;
+  --foreground: #272521;
+  --ink-soft: #403d37;
+  --ink-muted: #5d584f;
+  --accent: #3f7156;
+  --accent-surface: #eef5ef;
+  --accent-line: #c8dccd;
+  --link: #2f6650;
+  --link-hover: #204a38;
+  --paper-surface: #ffffff;
+  --paper-inset: #f1f5f2;
+  --paper-hover: #e6efe8;
+  --paper-line: #dbe4dd;
+  --paper-line-strong: #9db6a4;
   --paper-grain: url('/paper-grain.svg');
-  --selection: #ded8c8;
+  --selection: #d9eadf;
   --shadow-card: 0 1px 3px rgb(48 46 42 / 0.025);
   --shadow-profile: 0 3px 12px rgb(48 46 42 / 0.1);
 }
@@ -26,16 +28,18 @@
   --foreground: #eee9df;
   --ink-soft: #d1cbbf;
   --ink-muted: #b1aa9d;
-  --accent: #d0b997;
-  --link: #b1c7b8;
-  --link-hover: #d6e5d9;
+  --accent: #a7c8ae;
+  --accent-surface: #28372e;
+  --accent-line: #496451;
+  --link: #a9cfb5;
+  --link-hover: #d0e7d6;
   --paper-surface: #2c2b27;
-  --paper-inset: #201f1c;
-  --paper-hover: #37362f;
-  --paper-line: #464239;
-  --paper-line-strong: #686052;
+  --paper-inset: #202722;
+  --paper-hover: #34453a;
+  --paper-line: #3d4941;
+  --paper-line-strong: #607c68;
   --paper-grain: url('/paper-grain-dark.svg');
-  --selection: #4b5548;
+  --selection: #3c5b48;
   --shadow-card: 0 1px 3px rgb(0 0 0 / 0.08);
   --shadow-profile: 0 3px 12px rgb(0 0 0 / 0.2);
 }
@@ -46,6 +50,8 @@
   --color-ink-soft: var(--ink-soft);
   --color-ink-muted: var(--ink-muted);
   --color-accent: var(--accent);
+  --color-accent-surface: var(--accent-surface);
+  --color-accent-line: var(--accent-line);
   --color-link: var(--link);
   --color-link-hover: var(--link-hover);
   --color-paper-surface: var(--paper-surface);
@@ -54,7 +60,6 @@
   --color-paper-line: var(--paper-line);
   --color-paper-line-strong: var(--paper-line-strong);
   --font-sans: var(--font-primary);
-  --font-serif: var(--font-reading);
   --font-mono: var(--font-code);
 }
 
@@ -68,11 +73,17 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-primary), system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 1rem;
+  font-weight: 380;
+  line-height: 1.75;
 }
 
-h1, h2, h3, h4 {
-  font-family: var(--font-reading), Georgia, serif;
-  font-optical-sizing: auto;
+@media (min-width: 640px) {
+  body { font-size: 1.125rem; }
+}
+
+.home-main a {
+  font-weight: 700;
 }
 
 ::selection {

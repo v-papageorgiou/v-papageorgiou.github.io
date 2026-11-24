@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "predev": "node scripts/prepare-pdf-assets.mjs",
-    "dev": "next dev --turbopack",
-    "prebuild": "node scripts/prepare-pdf-assets.mjs",
+    "dev": "node --import tsx scripts/dev.ts",
+    "prebuild": "node scripts/prepare-pdf-assets.mjs && node --import tsx scripts/prepare-blog-assets.ts",
     "build": "next build",
-    "preexport": "node scripts/prepare-pdf-assets.mjs",
+    "preexport": "node scripts/prepare-pdf-assets.mjs && node --import tsx scripts/prepare-blog-assets.ts",
     "export": "next build && touch out/.nojekyll",
     "deploy": "npm run export",
     "start": "next start",

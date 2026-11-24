@@ -13,6 +13,7 @@ function onlyImage(element: Element): Element | undefined {
 // them, so a <figure> is never nested inside an invalid paragraph wrapper.
 export default function rehypeFigures() {
   return (tree: Root) => {
+    let figureNumber = 0;
     function walk(parent: Root | Element) {
       for (const node of parent.children) {
         if (node.type !== 'element') continue;
@@ -29,6 +30,7 @@ export default function rehypeFigures() {
 
         node.tagName = 'figure';
         node.properties.className = ['blog-figure'];
+        node.properties.id = `figure-${++figureNumber}`;
 
         // Figures are illustrations, including when the source Markdown wraps
         // an image in a link. Authors can put ordinary text links nearby.

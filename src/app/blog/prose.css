@@ -1,13 +1,10 @@
 .blog-prose {
   color: var(--ink-soft);
-  font-family: var(--font-reading), Georgia, serif;
-  font-size: 1.25rem;
-  font-optical-sizing: auto;
-  line-height: 1.75;
   overflow-wrap: break-word;
 }
 
-.blog-prose > :first-child { margin-top: 0; }
+.blog-prose > :first-child,
+.blog-article-body > :first-child { margin-top: 0; }
 .blog-prose p { margin: 1.25em 0; }
 .blog-prose :is(h1, h2, h3, h4) {
   color: var(--foreground);
@@ -41,6 +38,31 @@
   color: var(--ink-muted);
   font-style: italic;
 }
+.blog-prose .blog-tldr {
+  margin: 1.5em 0 2em;
+  padding: 1.25rem clamp(1rem, 2.5vw, 1.5rem);
+  border: 1px solid var(--accent-line);
+  border-inline-start: 3px solid var(--accent);
+  border-radius: 0.4rem;
+  background: var(--accent-surface);
+  color: var(--ink-soft);
+  font-size: 0.95em;
+  font-style: normal;
+  line-height: 1.65;
+}
+.blog-prose .blog-tldr-title {
+  margin: 0 0 0.75rem;
+  color: var(--accent);
+  font-family: var(--font-code), monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+}
+.blog-prose .blog-tldr p { margin: 0.75em 0; }
+.blog-prose .blog-tldr :is(ul, ol) { margin: 0.5em 0; padding-left: 1.25em; }
+.blog-prose .blog-tldr:first-child { margin-top: 0; }
+.blog-prose .blog-tldr > :last-child { margin-bottom: 0; }
 .blog-prose code {
   background: var(--paper-inset);
   color: var(--foreground);
@@ -62,6 +84,24 @@
   line-height: 1.8;
 }
 .blog-prose pre code { padding: 0; background: none; font-size: inherit; }
+.blog-bibtex { margin: 1.5em 0; }
+.blog-bibtex pre { margin: 0; }
+.blog-bibtex button { display: none; }
+@media screen {
+  .bibtex-copy-ready .blog-bibtex button {
+    display: block;
+    margin: 0 0 0.4rem auto;
+    padding: 0.2rem 0.65rem;
+    border: 1px solid var(--accent-line);
+    border-radius: 0.3rem;
+    background: var(--accent-surface);
+    color: var(--link);
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  .blog-bibtex button:hover { color: var(--link-hover); border-color: var(--accent); }
+}
 .blog-prose .katex { font-size: 1.05em; }
 .blog-prose .katex-display {
   max-width: 100%;
@@ -83,8 +123,8 @@
 .blog-prose :is(th, td) { padding: 0.65em 0.8em; border-bottom: 1px solid var(--paper-line); text-align: left; }
 .blog-prose th { color: var(--foreground); font-weight: 600; }
 .blog-prose img { display: block; max-width: 100%; height: auto; margin: 1.5em auto; border-radius: 0.25rem; }
-.blog-prose .blog-figure { margin: 2em 0; }
-.blog-prose .blog-figure img { margin: 0 auto; border: 1px solid var(--paper-line); }
+.blog-prose .blog-figure { margin: 2em 0; scroll-margin-top: 6rem; }
+.blog-prose .blog-figure img { width: 100%; margin: 0 auto; border: 1px solid var(--paper-line); }
 .blog-prose .pdf-figure { display: block; width: 100%; }
 .blog-prose .pdf-figure canvas {
   display: block;
@@ -121,7 +161,100 @@
 .blog-prose .task-list-item input { margin-right: 0.6em; accent-color: var(--link); }
 .blog-prose .footnotes { margin-top: 3em; border-top: 1px solid var(--paper-line); font-size: 0.85em; }
 .blog-prose .footnotes h2 { font-size: 1.25em; }
+.blog-prose [data-footnote-ref],
+.blog-prose .footnotes li { scroll-margin-top: 6rem; }
+.blog-prose .blog-citation {
+  margin-inline-start: 0.12em;
+  color: var(--link);
+  font-family: var(--font-primary), sans-serif;
+  font-size: 0.8em;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.blog-prose [data-footnote-ref] { font-size: inherit; }
+.blog-prose .footnotes li:target { background: var(--paper-inset); border-radius: 0.25rem; }
+.blog-prose a:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; }
 
-@media (min-width: 640px) {
-  .blog-prose { font-size: 1.375rem; }
+.blog-editor-note {
+  margin: 1.5em 0;
+  padding: 0.8rem 1rem;
+  border: 1px solid #d6a340;
+  border-left-width: 3px;
+  border-radius: 0.3rem;
+  background: #fff4d1;
+  color: #634411;
+  font-family: var(--font-primary), sans-serif;
+  font-size: 0.8em;
+  font-style: normal;
+  line-height: 1.6;
+}
+.blog-editor-note-fixme { background: #fce9e7; border-color: #c66d61; color: #7d342d; }
+.blog-prose .blog-editor-note-label {
+  display: block;
+  margin-bottom: 0.25em;
+  color: inherit;
+  font-family: var(--font-code), monospace;
+  font-size: 0.75em;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+.blog-editor-note-body { white-space: pre-wrap; overflow-wrap: anywhere; }
+.blog-editor-note-inline {
+  margin: 0 0.2em;
+  padding: 0.1em 0.35em;
+  border-width: 1px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.blog-prose .blog-editor-note-inline .blog-editor-note-label { display: inline; margin: 0 0.25em 0 0; }
+:root[data-theme='dark'] .blog-editor-note { background: #3a301c; border-color: #b78e3b; color: #f6d990; }
+:root[data-theme='dark'] .blog-editor-note-fixme { background: #3e2726; border-color: #b87870; color: #f6c4ba; }
+
+.blog-reference-layout { position: relative; }
+.blog-article-body { display: flow-root; }
+.blog-margin-references { display: none; }
+
+/* Reserve a 15rem reference column and a 2rem gap on laptop screens.
+   Keep the article centered where possible, otherwise shift it just enough
+   to fit the notes inside the page padding. Only narrow the text below 1120px. */
+@media screen and (min-width: 64rem) {
+  .blog-main:has(.blog-reference-layout) { max-width: 88rem; }
+  .blog-post:has(.blog-reference-layout) {
+    width: calc(100% - 17rem);
+    margin-left: clamp(0px, calc(100% - 67rem), calc((100% - 50rem) / 2));
+  }
+  .blog-margin-references:not([hidden]) {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: calc(100% + 2rem);
+    width: 15rem;
+    visibility: hidden;
+    color: var(--ink-muted);
+    font-family: var(--font-primary), sans-serif;
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+  }
+  .blog-margin-references[data-ready="true"] { visibility: visible; }
+  .blog-prose .blog-margin-references > ol { list-style: none; margin: 0; padding: 0; }
+  .blog-prose .blog-margin-note {
+    position: absolute;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.5rem minmax(0, 1fr);
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+  }
+  .blog-margin-number { font-family: var(--font-code), monospace; font-size: 0.75rem; }
+  .blog-margin-content > :first-child { margin-top: 0; }
+  .blog-margin-content > :last-child { margin-bottom: 0; }
+  .blog-margin-content p { margin: 0.65em 0; }
+}
+
+@media print {
+  .blog-reference-layout { min-height: 0 !important; }
+  .blog-editor-note { display: none !important; }
+  .blog-tldr { break-inside: avoid; }
 }
