@@ -1,4 +1,4 @@
-# Writing blog posts
+# Writing Blogposts
 
 Give each post its own folder in `content/blog/`. Write the article in `index.md`
 and keep its figures and supporting assets in that same folder:
@@ -486,7 +486,7 @@ Review the staged changes and commit:
 
 ```bash
 git diff --cached
-git commit -m "Add my first blog post"
+git commit -m "Add my first blogpost"
 ```
 
 Stage only the source files and figures belonging to your change. Generated

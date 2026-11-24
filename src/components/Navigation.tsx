@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, FileText } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { colors, transitions, classes } from '@/styles/theme';
 import ThemeToggle from '@/components/ThemeToggle';
 
@@ -14,9 +14,9 @@ export default function Navigation() {
 
   const navLinks = [
     { href: `${homePrefix}#about`, label: 'About' },
-    { href: `${homePrefix}#experience`, label: 'Experience' },
+    { href: '/blog/', label: 'Blogposts' },
     { href: `${homePrefix}#publications`, label: 'Publications' },
-    { href: '/blog/', label: 'Blog' },
+    { href: `${homePrefix}#experience`, label: 'Experience' },
   ];
 
   const mobileMenuId = 'primary-navigation';
@@ -36,19 +36,12 @@ export default function Navigation() {
                 key={link.href}
                 href={link.href}
                 className={classes.navLink}
-                aria-current={link.label === 'Blog' && pathname.startsWith('/blog') ? 'page' : undefined}
+                aria-current={link.href === '/blog/' && pathname.startsWith('/blog') ? 'location' : undefined}
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
-            <a
-              href="/cv.pdf"
-              className={`flex items-center space-x-1 ${colors.textNavLink} ${colors.textNavLinkHover} ${transitions.colors}`}
-            >
-              <FileText className="w-4 h-4" />
-              <span>CV</span>
-            </a>
           </div>
 
           <div className="flex shrink-0 items-center gap-1 md:ml-3">
@@ -78,20 +71,12 @@ export default function Navigation() {
                 key={link.href}
                 href={link.href}
                 className={`${classes.navLink} px-2 py-1`}
-                aria-current={link.label === 'Blog' && pathname.startsWith('/blog') ? 'page' : undefined}
+                aria-current={link.href === '/blog/' && pathname.startsWith('/blog') ? 'location' : undefined}
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
-            <a
-              href="/cv.pdf"
-              className={`flex items-center space-x-1 ${colors.textNavLink} ${colors.textNavLinkHover} ${transitions.colors} px-2 py-1`}
-              onClick={() => setIsOpen(false)}
-            >
-              <FileText className="w-4 h-4" />
-              <span>CV</span>
-            </a>
           </div>
         </div>
       </div>

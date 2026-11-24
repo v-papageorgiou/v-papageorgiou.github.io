@@ -1,4 +1,4 @@
-"""Save a local blog post as a self-contained HTML attachment."""
+"""Save a local blogpost as a self-contained HTML attachment."""
 
 import argparse
 import base64

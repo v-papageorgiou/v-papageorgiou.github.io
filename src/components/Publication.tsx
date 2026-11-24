@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import { ChevronDown, ChevronUp, ExternalLink, FileText, Github, Globe } from 'lucide-react';
 import { colors, classes, transitions } from '@/styles/theme';
 
@@ -20,8 +23,6 @@ interface PublicationProps {
   abstract: string;
   links: PublicationLinkSet;
   tags?: string[];
-  isExpanded: boolean;
-  onToggle: () => void;
   abstractId: string;
 }
 
@@ -33,14 +34,14 @@ export default function Publication({
   abstract,
   links,
   tags = [],
-  isExpanded,
-  onToggle,
   abstractId,
 }: PublicationProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   return (
     <article className={classes.card}>
       <header className="mb-3">
-        <h3 className={`text-2xl font-medium leading-tight ${colors.textHeading} mb-1`}>{title}</h3>
+        <h3 className={`text-xl font-medium leading-tight ${colors.textHeading} mb-1`}>{title}</h3>
         <p className={`${colors.textAccent} font-medium text-sm`}>{venue} ({year})</p>
       </header>
 
@@ -91,7 +92,7 @@ export default function Publication({
 
       <button
         type="button"
-        onClick={onToggle}
+        onClick={() => setIsExpanded(expanded => !expanded)}
         aria-expanded={isExpanded}
         aria-controls={abstractId}
         className={`flex items-center space-x-1 ${colors.textLink} ${colors.textLinkHover} ${transitions.colors} mb-2`}

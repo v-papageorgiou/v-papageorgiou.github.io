@@ -1,7 +1,5 @@
-'use client';
-
-import { useState } from 'react';
 import Image from "next/image";
+import Link from "next/link";
 import Navigation from "@/components/Navigation";
 import { 
   GraduationCap, 
@@ -10,13 +8,14 @@ import {
   Github,
   LinkedinIcon,
   FileText,
-  Award
+  ArrowRight
 } from "lucide-react";
 import Publication from "@/components/Publication";
 import { publications, formatAuthors } from "@/data/publications";
 import { experience } from "@/data/experience";
 import { socialLinks as importedSocialLinks } from "@/data/personal";
 import { getColleagueLink } from "@/data/colleagues";
+import { formatPostDate, getPosts } from "@/lib/posts";
 import { colors, effects, transitions, classes } from "@/styles/theme";
 
 // Custom X.com icon component
@@ -46,17 +45,8 @@ const socialLinks = importedSocialLinks.map(link => ({
 }));
 
 export default function Home() {
-  const [expandedAbstracts, setExpandedAbstracts] = useState<Set<number>>(new Set());
+  const recentPosts = getPosts().slice(0, 3);
 
-  const toggleAbstract = (index: number) => {
-    const newExpanded = new Set(expandedAbstracts);
-    if (newExpanded.has(index)) {
-      newExpanded.delete(index);
-    } else {
-      newExpanded.add(index);
-    }
-    setExpandedAbstracts(newExpanded);
-  };
   return (
     <div className={`min-h-screen ${colors.bgMain}`}>
       {/* Header */}
@@ -64,10 +54,10 @@ export default function Home() {
 
       <main id="main-content" className="home-main max-w-4xl mx-auto px-4 py-8">
         {/* Hero Section */}
-        <section id="about" className="mb-12">
+        <section id="about" className="mb-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 lg:gap-12 items-start">
             <div className="md:col-span-2">
-              <h1 className={`text-4xl font-medium tracking-tight ${colors.textHeading} mb-3`}>
+              <h1 className={`mb-3 text-4xl font-medium tracking-tight ${colors.textHeading}`}>
                 Vasilis Papageorgiou
               </h1>
               <div className={`flex items-center space-x-3 ${colors.textLink} mb-4 text-sm`}>
@@ -128,25 +118,57 @@ export default function Home() {
                 })}
               </div>
 
-              {/* CV Button */}
-              <div className="mt-4 flex justify-center">
-                <a
-                  href="/cv.pdf"
-                  className={classes.cvButton}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <FileText className="w-4 h-4" />
-                  <span className="text-sm">CV</span>
-                </a>
-              </div>
+              <a href="/cv.pdf" target="_blank" rel="noopener noreferrer" className={`mt-4 ${classes.cvButton}`}>
+                <FileText aria-hidden="true" className="size-4" />
+                <span className="text-sm">CV<span className="sr-only"> (PDF)</span></span>
+              </a>
             </div>
           </div>
         </section>
 
+        {recentPosts.length > 0 && (
+          <section id="blog-posts" className="mb-10 border-t border-paper-line pt-6">
+            <h2 className="mb-5 text-3xl tracking-tight">
+              <Link href="/blog/" className={`inline-flex items-center gap-2 ${classes.link}`}>
+                Blogposts <ArrowRight aria-hidden="true" className="size-5" />
+              </Link>
+            </h2>
+            <ul className="space-y-4">
+              {recentPosts.map((post) => (
+                <li key={post.slug} className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
+                  <Link href={`/blog/${post.slug}/`} className={classes.link}>{post.title}</Link>
+                  <div className={`flex shrink-0 items-baseline gap-2 text-sm ${colors.textFooterSecondary}`}>
+                    {post.draft && <span className="text-accent">Draft</span>}
+                    <time dateTime={post.date}>{formatPostDate(post.date)}</time>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        <section id="publications" className="mb-10 border-t border-paper-line pt-6">
+          <h2 className={`mb-5 text-3xl font-medium tracking-tight ${colors.textHeading}`}>Publications</h2>
+          <div className="space-y-4">
+            {publications.map((pub, index) => (
+              <Publication
+                key={pub.title}
+                title={pub.title}
+                authors={formatAuthors(pub.authors)}
+                venue={pub.venue}
+                year={pub.year}
+                abstract={pub.abstract}
+                links={pub.links}
+                tags={pub.tags}
+                abstractId={`abstract-${index}`}
+              />
+            ))}
+          </div>
+        </section>
+
         {/* Experience */}
-        <section id="experience" className="mb-10">
-          <h2 className={`text-3xl font-medium ${colors.textHeading} mb-5`}>Experience</h2>
+        <section id="experience" className="mb-10 border-t border-paper-line pt-6">
+          <h2 className={`mb-5 text-3xl font-medium tracking-tight ${colors.textHeading}`}>Experience</h2>
 
           <div className="space-y-3">
             {experience.map((item, index) => (
@@ -181,36 +203,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Publications */}
-        <section id="publications" className="mb-10">
-          <div className="flex items-center space-x-2 mb-5">
-            <Award className={`w-5 h-5 ${colors.textLink}`} />
-            <h2 className={`text-3xl font-medium ${colors.textHeading}`}>Publications</h2>
-          </div>
-          
-          <div className="space-y-4">
-            {publications.map((pub, index) => {
-              const isExpanded = expandedAbstracts.has(index);
-              const formattedAuthors = formatAuthors(pub.authors);
-
-              return (
-                <Publication
-                  key={pub.title}
-                  title={pub.title}
-                  authors={formattedAuthors}
-                  venue={pub.venue}
-                  year={pub.year}
-                  abstract={pub.abstract}
-                  links={pub.links}
-                  tags={pub.tags}
-                  isExpanded={isExpanded}
-                  onToggle={() => toggleAbstract(index)}
-                  abstractId={`abstract-${index}`}
-                />
-              );
-            })}
-          </div>
-        </section>
       </main>
 
       {/* Footer */}

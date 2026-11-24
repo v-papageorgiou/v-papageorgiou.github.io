@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import PreviewImage from '@/components/PreviewImage';
 import { formatPostAuthors, formatPostDate, getPosts } from '@/lib/posts';
-import { colors } from '@/styles/theme';
+import { classes, colors } from '@/styles/theme';
 
 export const metadata: Metadata = {
   title: { absolute: 'Blogposts' },
@@ -17,7 +17,8 @@ export default function BlogPage() {
 
   return (
     <div className="mx-auto max-w-2xl">
-      <header className="mb-12">
+      <Link href="/" className={`${classes.link} mb-10 inline-block text-sm`}>← Home</Link>
+      <header className="mb-6">
         <h1 className={`text-5xl font-medium tracking-tight sm:text-6xl ${colors.textHeading}`}>Blogposts</h1>
       </header>
 

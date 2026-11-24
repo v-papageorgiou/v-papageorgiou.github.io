@@ -48,7 +48,7 @@ npm run dev
 
 ## Customization
 
-### Write a blog post
+### Write a blogpost
 
 Create `content/blog/my-post/index.md` and keep figures beside it, for example
 in `content/blog/my-post/figs/`. The blog supports inline and display math,
